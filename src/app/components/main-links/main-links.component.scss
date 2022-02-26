@@ -1,0 +1,33 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.link{
+  text-transform: uppercase;
+  font-size: .8em;
+  font-weight: bold;
+  margin: 1.5em 2.5em;
+  border-radius: 12px;
+  background-color: #e6e6e6;
+  padding: .8em .8em;
+}
+
+.right{
+  background-color: #000;
+  color: #fff;
+}
+
+.left::after{
+  content: '▼';
+  font-size: .8em;
+  margin-left: 5px;
+  color:#8bc53d;
+}
+
+.right::before{
+  content: '▼';
+  font-size: .8em;
+  margin-right: 5px;
+  color:#8bc53d;
+}

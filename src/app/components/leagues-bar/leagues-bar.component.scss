@@ -1,0 +1,46 @@
+.container{
+  display:flex;
+}
+.links{
+  display:flex;
+  margin:2em 0;
+  overflow-y:hidden;
+  overflow-x:auto;
+  white-space: nowrap;
+  background-color:black;
+  width:90vw;
+}
+.nav-left{
+  margin-top:2em;
+  margin-bottom:2em;
+  padding-right: .5em;
+  padding-left: 1em;
+  background-color:black;
+  color:white;
+  display:flex;
+  align-items: center;
+  margin-left: 15px;
+}
+.nav-right{
+  margin-top:2em;
+  margin-bottom:2em;
+  padding-right: .5em;
+  padding-left: 1em;
+  background-color:black;
+  color:white;
+  display:flex;
+  align-items: center;
+  margin-right: 15px;
+}
+
+.league {
+  display:flex;
+  border-radius: 50%;
+  width: 6em;
+  height: 6em;
+  background-color: #e6e6e6;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  margin:15px;
+}

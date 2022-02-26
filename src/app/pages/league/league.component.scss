@@ -1,0 +1,90 @@
+.league-name{
+  background-color: black;
+  color: white;
+  margin-top: 1em;
+  padding: 6px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: .9em;
+}
+
+.info{
+  margin: 2em;
+  background-color:black;
+  color: white;
+  width: 230px;
+  padding:.7em 1.7em;
+  border-radius:15px;
+}
+
+.header{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom:1em;
+}
+
+.photo{
+  border-radius:50%;
+  width:70px;
+  height:70px;
+  background-color:white;
+}
+.title{
+  font-size:2em;
+  text-transform: uppercase;
+}
+.description{
+  width:100%;
+  font-size: .8em;
+}
+
+.rate-text{
+  grid-area: rate-text;
+}
+.rate{
+  grid-area:rate;
+  text-align: right;
+}
+.fans-text{
+  grid-area: fans-text;
+}
+.fans-rate{
+  grid-area: fans-rate;
+  text-align: right;
+}
+.league-type{
+  grid-area: league-type;
+}
+.like-btn{
+  grid-area: like-btn;
+  text-align: right;
+}
+.table{
+  width: 100%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display:grid;
+  grid-template-areas:
+      'rate-text rate'
+      'fans-text fans-rate'
+      'league-type like-btn'
+}
+.info-row{
+  display:flex;
+  justify-content:space-around
+}
+.add{
+  padding:.7em 1.7em;
+  margin-top: 100px;
+  font-weight: bold;
+  font-size: 2em;
+}
+.tournamets-title{
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: -20px;
+  margin-right: 1em;
+  text-align: right;
+}

@@ -1,0 +1,19 @@
+.container{
+  display:flex;
+  margin: 2em 1px;
+  padding-right: 1em;
+  padding-left: 1em;
+  overflow-y:hidden;
+  overflow-x:auto;
+  white-space: nowrap;
+}
+.galery{
+  padding:15px;
+  background-color: #e6e6e6;
+  width: 100px;
+  height: 100px;
+  margin:3px;
+  overflow-y:hidden;
+  overflow-x:hidden;
+  white-space: normal;
+}

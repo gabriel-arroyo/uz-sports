@@ -1,1 +1,25 @@
-<p>league works!</p>
+<app-social-bar></app-social-bar>
+<app-title></app-title>
+<app-navbar [pages]="pages"></app-navbar>
+<div class="league-name">{{league}}</div>
+<div class="info-row">
+  <div class="info">
+    <div class="header">
+      <div class="photo"></div>
+      <div class="title">Liga TNB</div>
+    </div>
+    <div class="description">Liga familiar en Viveros de Coyoacan. Explota tu pasión</div>
+    <div class="table">
+        <div class="rate-text">Rate(by players)</div>
+        <div class="rate">★★★★★</div>
+        <div class="fans-text">Fans like</div>
+        <div class="fans-rate">211 👍</div>
+        <div class="league-type">BASKETBALL</div>
+        <div class="like-btn">Like 👍</div>
+    </div>
+  </div>
+  <div class="add">PHOTO/Video</div>
+</div>
+
+<div class="tournamets-title">Tournaments</div>
+<app-leagues-bar [leagues]="leagues"></app-leagues-bar>

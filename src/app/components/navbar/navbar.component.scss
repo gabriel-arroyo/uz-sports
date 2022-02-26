@@ -1,0 +1,48 @@
+ul {
+ list-style-type: none;
+ margin:0;
+ padding: 0;
+}
+
+li {
+  display: inline;
+  margin-right: 10px;
+  &:not(:last-child)::after {
+    content:"\25CF";
+    color:#8bc53d;
+    margin-left: 10px;
+  }
+}
+
+.links {
+  display:flex;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: .7em;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  background-color: black;
+  margin: auto;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.login {
+  display: flex;
+  justify-content: center;
+
+}
+.navbar-icon{
+  width:auto;
+  height: 1.5em;;
+  margin: 10px;
+}
+
+
