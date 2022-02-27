@@ -1,0 +1,30 @@
+<div class="full-page">
+  <div class="container">
+    <app-title></app-title>
+    <div class="tournament-logo">Tournament Logo</div>
+    <div class="selectors">
+      <div class="selector">
+        <label for="date">Date: </label>
+        <input type="date" id="date" name="date" value="{{date}}" min="{{minDate}}" max="{{maxDate}}">
+      </div>
+      <div class="selector">
+        <label for="court">Court: </label>
+        <select name="court" id="court">
+          <option value="court" *ngFor="let court of courts">{{court}}</option>
+        </select>
+      </div>
+    </div>
+      <table>
+        <tr>
+          <th>Time</th>
+          <th>Team1</th>
+          <th>Team2</th>
+        </tr>
+        <tr *ngFor="let match of matches">
+          <td>{{match.time}}</td>
+          <td>{{match.team1}}</td>
+          <td>{{match.team2}}</td>
+        </tr>
+      </table>
+  </div>
+</div>

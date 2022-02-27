@@ -8,6 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ComponentsModule } from '../components/components.module';
 import { AppModule } from '../app.module';
+import {MembersModule} from './members/members.module'
+import {LeagueModule} from './members/league/league.module'
 
 
 
@@ -18,11 +20,13 @@ import { AppModule } from '../app.module';
     ComunityComponent,
     CourtsComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     CommonModule,
     ComponentsModule,
+    // MembersModule,
+    // LeagueModule,
   ]
 })
 export class PagesModule { }

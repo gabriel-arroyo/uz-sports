@@ -5,6 +5,9 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { NewsComponent } from './news/news.component';
 import { ScoreComponent } from './score/score.component';
 import { TeamsComponent } from './teams/teams.component';
+import { ComponentsModule } from 'src/app/components/components.module';
+import { AgendaComponent } from './agenda/agenda.component';
+import { ChecklistComponent } from './checklist/checklist.component';
 
 
 
@@ -14,10 +17,13 @@ import { TeamsComponent } from './teams/teams.component';
     CalendarComponent,
     NewsComponent,
     ScoreComponent,
-    TeamsComponent
+    TeamsComponent,
+    AgendaComponent,
+    ChecklistComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ComponentsModule
   ]
 })
 export class LeagueModule { }
