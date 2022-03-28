@@ -9,6 +9,7 @@ import { NewsComponent } from './news/news.component';
 import { NewsBarComponent } from './news-bar/news-bar.component';
 import { GaleryBarComponent } from './galery-bar/galery-bar.component';
 import { ThisisuzComponent } from './thisisuz/thisisuz.component';
+import { ItemsComponent } from './items/items.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ThisisuzComponent } from './thisisuz/thisisuz.component';
     NewsBarComponent,
     GaleryBarComponent,
     ThisisuzComponent,
+    ItemsComponent,
   ],
   exports: [
     TitleComponent,
@@ -32,6 +34,7 @@ import { ThisisuzComponent } from './thisisuz/thisisuz.component';
     NewsBarComponent,
     GaleryBarComponent,
     ThisisuzComponent,
+    ItemsComponent,
   ],
   imports: [
     CommonModule

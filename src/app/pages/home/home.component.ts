@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TitleComponent } from 'src/app/components/title/title.component';
 import { News } from 'src/app/core/models/news';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,6 @@ import { News } from 'src/app/core/models/news';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   pages = ["This is uz", "League", "Community"];
   leagues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
   news: News[] = [
@@ -28,9 +28,17 @@ export class HomeComponent implements OnInit {
       imageUrl: "https://frontofficesports.com/wp-content/uploads/2020/06/GettyImages-1190989119-1-scaled.jpg"
     },
   ]
-  constructor() { }
+
+  constructor(private itemService: ItemService) { }
+  insert() {
+    console.log('setting item')
+    this.itemService.setItem()
+  }
+
 
   ngOnInit(): void {
   }
 
 }
+
+

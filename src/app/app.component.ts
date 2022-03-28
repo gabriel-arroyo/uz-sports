@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'uz-sports';
+  constructor(private itemService: ItemService) { }
+  insert() {
+    console.log('setting item')
+    this.itemService.setItem()
+  }
 }

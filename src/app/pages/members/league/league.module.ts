@@ -8,6 +8,7 @@ import { TeamsComponent } from './teams/teams.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { AgendaComponent } from './agenda/agenda.component';
 import { ChecklistComponent } from './checklist/checklist.component';
+import { TeamScoreComponent } from './score/team-score/team-score.component';
 
 
 
@@ -20,6 +21,7 @@ import { ChecklistComponent } from './checklist/checklist.component';
     TeamsComponent,
     AgendaComponent,
     ChecklistComponent,
+    TeamScoreComponent,
   ],
   imports: [
     CommonModule,

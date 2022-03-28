@@ -1,14 +1,27 @@
+<app-title></app-title>
 <div class="full-page">
   <div class="container">
     <div class="bar gray">
-      <button class="bar-item button" [ngClass]="{'active':selectedTab===1}"
-        (click)="openCity($event,1)">{{team1}}</button>
-      <button class="bar-item button" [ngClass]="{'active':selectedTab===2}"
-        (click)="openCity($event,2)">{{team2}}</button>
+      <button
+        class="bar-item button"
+        [ngClass]="{ active: selectedTab === 1 }"
+        (click)="openCity($event, 1)"
+      >
+        {{ team1 }}
+      </button>
+      <button
+        class="bar-item button"
+        [ngClass]="{ active: selectedTab === 2 }"
+        (click)="openCity($event, 2)"
+      >
+        {{ team2 }}
+      </button>
     </div>
 
-    <div class="border" *ngIf="selectedTab===1">
-      <div class="default-container"><button class="default button">Default</button></div>
+    <div class="border" *ngIf="selectedTab === 1">
+      <div class="default-container">
+        <button class="default button">Default</button>
+      </div>
       <table class="table">
         <tr>
           <th>Nombre</th>
@@ -16,17 +29,19 @@
           <th>Ok</th>
         </tr>
         <tr *ngFor="let player of players_team1">
-          <td>{{player.name}}</td>
-          <td class="center">{{player.number}}</td>
+          <td>{{ player.name }}</td>
+          <td class="center">{{ player.number }}</td>
           <td class="center">
-            <input type="checkbox" id="cbox2" value="second_checkbox">
+            <input type="checkbox" id="cbox2" value="second_checkbox" />
           </td>
         </tr>
       </table>
     </div>
 
-    <div class="border" *ngIf="selectedTab===2">
-      <div class="default-container"><button class="default button">Default</button></div>
+    <div class="border" *ngIf="selectedTab === 2">
+      <div class="default-container">
+        <button class="default button">Default</button>
+      </div>
       <table class="table">
         <tr>
           <th>Nombre</th>
@@ -34,14 +49,14 @@
           <th>Ok</th>
         </tr>
         <tr *ngFor="let player of players_team2">
-          <td>{{player.name}}</td>
-          <td class="center">{{player.number}}</td>
+          <td>{{ player.name }}</td>
+          <td class="center">{{ player.number }}</td>
           <td class="center">
-            <input type="checkbox" id="cbox2" value="second_checkbox">
+            <input type="checkbox" id="cbox2" value="second_checkbox" />
           </td>
         </tr>
       </table>
     </div>
-    <button class="button start">Start</button>
+    <button class="button start">Iniciar</button>
   </div>
 </div>
