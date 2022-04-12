@@ -1,4 +1,9 @@
 <div class="container">
+  <div>
+    <ul *ngFor="let s of score">
+      <li>{{ s.teamName }}</li>
+    </ul>
+  </div>
   <p class="team">Equipo</p>
   <div class="faults-container">
     <button class="fault-button">Foul</button>

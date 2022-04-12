@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Score } from 'src/app/models/score';
+import { ScoreService } from 'src/app/services/score.service';
 
 @Component({
   selector: 'app-team-score',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./team-score.component.scss']
 })
 export class TeamScoreComponent implements OnInit {
+  score: Score[] = [];
 
-  constructor() { }
+  constructor(private scoreService: ScoreService) { }
 
   ngOnInit(): void {
+    this.scoreService.getScore().subscribe(score => {
+      this.score = score;
+    })
+  }
+
+  create() {
+    this.scoreService.createScore()
   }
 
 }

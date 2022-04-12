@@ -11,9 +11,9 @@ export class ItemService {
   itemsCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>
 
-  constructor(public afs: AngularFirestore) {
+  constructor(public db: AngularFirestore) {
     //this.items = this.afs.collection<Item>('Items').valueChanges();
-    this.itemsCollection = afs.collection<Item>('Items');
+    this.itemsCollection = db.collection<Item>('Items');
     this.items = this.itemsCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Item;
@@ -36,7 +36,7 @@ export class ItemService {
     return this.items;
   }
   setItem() {
-    this.afs.collection<Item>('Items')
+    this.db.collection<Item>('Items')
       .add({ title: 'item3', description: 'added from ng' })
       .then(res => {
         console.log('item agregado', res);
