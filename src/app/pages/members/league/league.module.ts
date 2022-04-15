@@ -48,7 +48,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { PointsDialogComponent } from './score/points-dialog/points-dialog.component';
 
 
 @NgModule({
@@ -61,7 +60,6 @@ import { PointsDialogComponent } from './score/points-dialog/points-dialog.compo
     AgendaComponent,
     ChecklistComponent,
     TeamScoreComponent,
-    PointsDialogComponent,
   ],
   imports: [
     CommonModule,
