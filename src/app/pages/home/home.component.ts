@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TitleComponent } from 'src/app/components/title/title.component';
 import { News } from 'src/app/core/models/news';
-import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-home',
@@ -29,11 +28,8 @@ export class HomeComponent implements OnInit {
     },
   ]
 
-  constructor(private itemService: ItemService) { }
-  insert() {
-    console.log('setting item')
-    this.itemService.setItem()
-  }
+  constructor() { }
+
 
 
   ngOnInit(): void {

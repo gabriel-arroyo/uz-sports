@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Score } from 'src/app/models/score';
+import { Score } from '../../../../../core/models/score';
 import { ScoreService } from 'src/app/services/score.service';
+import { MatButtonModule } from '@angular/material/button';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-team-score',
@@ -13,13 +15,11 @@ export class TeamScoreComponent implements OnInit {
   constructor(private scoreService: ScoreService) { }
 
   ngOnInit(): void {
-    this.scoreService.getScore().subscribe(score => {
-      this.score = score;
-    })
+
+
   }
 
   create() {
-    this.scoreService.createScore()
   }
 
 }

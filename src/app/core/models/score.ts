@@ -2,14 +2,12 @@ import * as internal from "stream";
 
 export interface Score {
     id?: string;
-    idTeam?: string;
-    teamName?: string;
-    date?: string;
-    time?: string;
+    idTeam: string;
+    idGame: string;
+    date: string;
+    time: string;
     fouls?: Foul[];
     points?: Point[];
-    quarter?: number;
-    extraquarter?: number;
 }
 
 export interface Foul {
