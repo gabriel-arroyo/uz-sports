@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
-import { Game } from '../core/models/game';
+import { Team } from '../core/models/team';
 
 @Injectable({
     providedIn: 'root'
 })
-export class GameService {
-    gameCollection: AngularFirestoreCollection<Game>;
-    games: Observable<Game[]>
+export class TeamService {
+    teamCollection: AngularFirestoreCollection<Team>;
+    teams: Observable<Team[]>
     db: AngularFirestore;
 
     constructor(public fb: AngularFirestore) {
         this.db = fb;
-        this.gameCollection = fb.collection<Game>("Games");
+        this.teamCollection = fb.collection<Team>("Teams");
 
-        this.games = this.gameCollection.snapshotChanges()
+        this.teams = this.teamCollection.snapshotChanges()
             .pipe(
                 map(actions => actions.map(a => {
-                    const data = a.payload.doc.data() as Game;
+                    const data = a.payload.doc.data() as Team;
                     const id = a.payload.doc.id;
                     return { ...data, id };
                 }
@@ -27,29 +27,28 @@ export class GameService {
             )
     }
 
-    getGame(id: string) {
-        const itemRef = this.db.doc<Game>(`/Games/` + id);
-        let game = itemRef.snapshotChanges()
+    getTeam(id: string) {
+        const itemRef = this.db.doc<Team>(`/Teams/` + id);
+        let team = itemRef.snapshotChanges()
             .pipe(
                 map(a => {
-                    const data = a.payload.data() as Game
+                    const data = a.payload.data() as Team
                     const id = a.payload.id;
                     return { ...data, id };
                 })
             )
-        return game;
+        return team;
     }
 
-    getGameBySchedule(date: string, time: string) {
-        let games = this.db.collection<Game>("Games", ref =>
+    getTeamByName(name: string) {
+        let teams = this.db.collection<Team>("Teams", ref =>
             ref
-                .where('date', '==', date)
-                .where('time', '==', time)
+                .where('name', '==', name)
                 .limit(1));
-        return games.snapshotChanges()
+        return teams.snapshotChanges()
             .pipe(
                 map(actions => actions.map(a => {
-                    const data = a.payload.doc.data() as Game;
+                    const data = a.payload.doc.data() as Team;
                     const id = a.payload.doc.id;
                     return { ...data, id };
                 }
@@ -58,8 +57,8 @@ export class GameService {
     }
 
 
-    createGame(game: Game) {
-        this.gameCollection.add(game)
+    createPlayer(team: Team) {
+        this.teamCollection.add(team)
             .then(res => {
                 console.log('juego agregado', res)
             })
@@ -68,12 +67,12 @@ export class GameService {
             })
     }
 
-    setGameGamesId(idGame: string, idTeam1: string, idTeam2: string) {
-        try {
-            this.gameCollection.doc(idGame).update({ idTeam1: idTeam1, idTeam2: idTeam2 })
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
+    // setTeamPlayersId(idTeam: string, idPlayer1: string, idPlayer2: string) {
+    //     try {
+    //         this.teamCollection.doc(idTeam).update({ idPlayer1: idPlayer1, idPlayer2: idPlayer2 })
+    //     }
+    //     catch (err) {
+    //         console.log(err)
+    //     }
+    // }
 }
