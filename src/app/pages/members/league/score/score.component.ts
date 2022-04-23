@@ -2,68 +2,109 @@ import { Component, Input, OnInit } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
 import * as dayjs from 'dayjs'
 import { Game } from 'src/app/core/models/game';
-import { Score } from 'src/app/core/models/score';
+import { Point, Score } from 'src/app/core/models/score';
 import { ScoreService } from 'src/app/services/score.service';
 import { map } from 'rxjs';
+import { TeamService } from 'src/app/services/team.service';
+import { PlayerService } from 'src/app/services/player.service';
+import { Team } from 'src/app/core/models/team';
+import { Player } from 'src/app/core/models/player';
 
 @Component({
   selector: 'app-score',
   templateUrl: './score.component.html',
-  styleUrls: ['./score.component.scss']
+  styleUrls: ['./score.component.scss'],
 })
 export class ScoreComponent implements OnInit {
+  totalScore1: number = 0
+  totalScore2: number = 0
+  team1: Team = {
+    name: "team1",
+    category: "male",
+    city: "Saltillo",
+  }
+  team2: Team = {
+    name: "team2",
+    category: "male",
+    city: "Saltillo",
+  }
+  array: any[] = []
   game: Game = {
     id: "",
+    idScore1: "",
+    idScore2: "",
     idTeam1: "",
     idTeam2: "",
     date: dayjs().format("YYYY/MM/DD"),
     time: dayjs().format("HH:mm")
   }
+  points1: Point[] = []
   scoreTeam1: Score = {
+    id: "",
     idTeam: "",
-    idGame: "",
-    date: dayjs().format("YYYY/MM/DD"),
-    time: dayjs().format("HH:mm")
   }
   scoreTeam2: Score = {
+    id: "",
     idTeam: "",
-    idGame: "",
-    date: dayjs().format("YYYY/MM/DD"),
-    time: dayjs().format("HH:mm")
   }
 
-  constructor(private gameService: GameService, private scoreService: ScoreService) { }
+  constructor(
+    private gameService: GameService,
+    private scoreService: ScoreService,
+    private teamService: TeamService,
+    private playerService: PlayerService,
+  ) { }
 
   ngOnInit(): void {
-    // this.gameService.createScore({
-    //   date: dayjs().format('DD/MM/YYYY'),
-    //   time: dayjs().format('HH:mm'),
-    //   idTeam1: 't1',
-    //   teamName1: 'equipo1',
-    //   idTeam2: 't2',
-    //   teamName2: 'equipo2',
-    // })
+    // this.gameService.createGame(
+    //   "rDQpMX3YBnuWjQ4RBzYI",
+    //   "6CbkplTSDym5rB3H5CT9",
+    // ).then(
+    //   game => {
+    //     this.game = game
+    //     this.scoreService.setGame(game)
+    //     this.scoreService.addPoints(game.idScore1, "05ONfhbGOyqghC9AhB1m", 23, 2, "1:11")
+    //   })
 
-    this.gameService.getGame("GspWAq5OCukyu977mCQD")
-      .subscribe(res => {
-        this.game = res
-        // if (!this.game.idScore1 || !this.game.idScore2 || !this.scoreTeam2.idGame || !this.scoreTeam2.idGame) {
-        //   this.game.idScore1 = this.scoreService.createScore(this.game, 1)
-        //   this.game.idScore2 = this.scoreService.createScore(this.game, 2)
-        //   this.gameService.setGameScoresId(this.game.id, this.game.idScore1, this.game.idScore2)
-        // }
-        this.scoreService.getScoreByIdGameAndTeam("GspWAq5OCukyu977mCQD", res.idTeam1)
-          .subscribe(
-            res => {
-              this.scoreTeam1 = res[0];
-              console.log("res", res);
-            }
-          )
-        this.scoreService.getScoreByIdGameAndTeam("GspWAq5OCukyu977mCQD", res.idTeam2)
-          .subscribe(
-            res => this.scoreTeam2 = res[0]
-          )
-      })
+    // this.teamService.createTeam(this.team1).then(id => {
+    //   if (id === "") return
+    //   for (let index = 0; index < 50; index++) {
+    //     this.playerService.createPlayer({
+    //       name: "Player" + index,
+    //       idTeams: [id],
+    //       number: index
+    //     })
+    //   }
+    // })
+    // this.teamService.createTeam(this.team2).then(id => {
+    //   if (id === "") return
+    //   for (let index = 0; index < 50; index++) {
+    //     this.playerService.createPlayer({
+    //       name: "Player" + index,
+    //       idTeams: [id],
+    //       number: index
+    //     })
+    //   }
+    // })
+    this.scoreService.getAllPoints("kX5RIatU4DBCmaX5YV27").subscribe(
+      points => this.points1 = points
+    )
+    this.scoreService.getPoints("kX5RIatU4DBCmaX5YV27").subscribe(
+      score => {
+        this.points1 = score
+        this.totalScore1 = this.totalPoints(score)
+      }
+    )
+    this.totalScore2 = 3
+  }
+
+
+  totalPoints = (points: Point[]) => {
+    return points.reduce((a, b) => a + (b["points"] || 0), 0)
+  }
+
+  addPoints = () => {
+
   }
 
 }
