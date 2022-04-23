@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+import * as dayjs from 'dayjs';
 import { map, Observable } from 'rxjs';
 import { Game } from '../core/models/game';
+import { ScoreService } from './score.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +13,7 @@ export class GameService {
     games: Observable<Game[]>
     db: AngularFirestore;
 
-    constructor(public fb: AngularFirestore) {
+    constructor(public fb: AngularFirestore, private scoreService: ScoreService) {
         this.db = fb;
         this.gameCollection = fb.collection<Game>("Games");
 
@@ -58,17 +60,27 @@ export class GameService {
     }
 
 
-    createGame(game: Game) {
-        this.gameCollection.add(game)
-            .then(res => {
-                console.log('juego agregado', res)
-            })
-            .catch(e => {
-                console.log(e)
-            })
+    async createGame(idTeam1: string, idTeam2: string, date = dayjs().format('DD/MM/YYYY'), time = dayjs().format('HH:mm')) {
+        const id = this.db.createId();
+        const idScore1 = await this.scoreService.createScore(idTeam1)
+        const idScore2 = await this.scoreService.createScore(idTeam2)
+        let newGame: Game = {
+            id: id,
+            idTeam1: idTeam1,
+            idTeam2: idTeam2,
+            idScore1: idScore1,
+            idScore2: idScore2,
+            date: date,
+            time: time,
+            quarter: 1,
+            extraquarter: 0,
+        }
+        // const res = await this.gameCollection.add(newGame)
+        await this.gameCollection.doc(id).set(newGame)
+        return newGame
     }
 
-    setGameGamesId(idGame: string, idTeam1: string, idTeam2: string) {
+    setGameTeamsId(idGame: string, idTeam1: string, idTeam2: string) {
         try {
             this.gameCollection.doc(idGame).update({ idTeam1: idTeam1, idTeam2: idTeam2 })
         }

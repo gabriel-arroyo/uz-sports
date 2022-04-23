@@ -57,14 +57,17 @@ export class PlayerService {
     }
 
 
-    createPlayer(player: Player) {
+    createPlayer(player: Player): string {
+        let id = ""
         this.playerCollection.add(player)
             .then(res => {
-                console.log('juego agregado', res)
+                console.log('jugador agregado', res)
+                id = res.id
             })
             .catch(e => {
                 console.log(e)
             })
+        return id
     }
 
     // setPlayerPlayersId(idPlayer: string, idPlayer1: string, idPlayer2: string) {

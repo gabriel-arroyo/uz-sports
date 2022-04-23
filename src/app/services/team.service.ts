@@ -57,14 +57,9 @@ export class TeamService {
     }
 
 
-    createPlayer(team: Team) {
-        this.teamCollection.add(team)
-            .then(res => {
-                console.log('juego agregado', res)
-            })
-            .catch(e => {
-                console.log(e)
-            })
+    async createTeam(team: Team) {
+        const res = await this.teamCollection.add(team)
+        return res.id ? res.id : ""
     }
 
     // setTeamPlayersId(idTeam: string, idPlayer1: string, idPlayer2: string) {

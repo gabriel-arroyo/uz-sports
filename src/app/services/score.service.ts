@@ -1,10 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Score } from '../core/models/score';
+import { Foul, Point, Score } from '../core/models/score';
 import * as dayjs from "dayjs";
 import { Game } from '../core/models/game';
+import { Player } from '../core/models/player';
+import { query } from '@angular/animations';
 
 @Injectable({
     providedIn: 'root'
@@ -12,36 +14,64 @@ import { Game } from '../core/models/game';
 export class ScoreService {
     scoreCollection: AngularFirestoreCollection<Score>;
     db: AngularFirestore;
+    game: Game = {
+        id: "",
+        idScore1: "",
+        idScore2: "",
+        idTeam1: "",
+        idTeam2: "",
+        date: dayjs().format("YYYY/MM/DD"),
+        time: dayjs().format("HH:mm")
+    }
 
     constructor(public fb: AngularFirestore) {
         this.db = fb;
         this.scoreCollection = fb.collection<Score>("Scores");
     }
 
-    getScore(id: string) {
-        const itemRef = this.db.doc<Score>(`/Scores/` + id);
-        let score = itemRef.snapshotChanges()
-            .pipe(
-                map(a => {
-                    const data = a.payload.data() as Score
-                    const id = a.payload.id;
-                    return { id, ...data };
-                })
-            )
-        return score;
+    setGame(game: Game) {
+        this.game = game
     }
 
-    getPoints(idScore: string) {
-        const itemRef = this.db.doc<Score>(`/Scores/${idScore}/points`);
-        let score = itemRef.snapshotChanges()
+    getScore(idScore: string) {
+        let games = this.db.collection<Score>(`Scores/${idScore}`);
+        return games.snapshotChanges()
             .pipe(
-                map(a => {
-                    const data = a.payload.data() as Score
-                    const id = a.payload.id;
-                    return { id, ...data };
-                })
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Score;
+                    const id = a.payload.doc.id;
+                    return { ...data, id };
+                }
+                ))
             )
-        return score;
+    }
+
+    getTotalScore(idScore: string) {
+        let games = this.db.collection<Point>(`Scores/${idScore}/points`);
+        let total = 0;
+        games.snapshotChanges()
+            .pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Point;
+                    return { ...data };
+                }
+                ))
+            ).subscribe(score => { total = score.reduce((a, b) => a + (b["points"] || 0), 0) })
+        return total
+    }
+
+
+    getPoints(idScore: string) {
+        let games = this.db.collection<Point>(`Scores/${idScore}/points`);
+        return games.snapshotChanges()
+            .pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Point;
+                    const id = a.payload.doc.id;
+                    return { ...data, id };
+                }
+                ))
+            )
     }
 
     getScoreBySchedule(date: string, time: string) {
@@ -55,7 +85,7 @@ export class ScoreService {
                 map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Score;
                     const id = a.payload.doc.id;
-                    return { id, ...data };
+                    return { ...data, id };
                 }
                 ))
             )
@@ -73,29 +103,46 @@ export class ScoreService {
                 map(actions => actions.map(a => {
                     const data = a.payload.doc.data() as Score;
                     const id = a.payload.doc.id;
-                    return { id, ...data };
+                    return { ...data, id };
                 }
                 ))
             )
     }
 
-    createScore(game: Game, team: number) {
-        if (team === 1 && !game.idTeam1) return ''
+    async createScore(team: string) {
         const id = this.db.createId();
-        const score = {
+        const score: Score = {
             id: id,
-            idTeam: team === 1 ? game.idTeam1 : game.idTeam2,
-            idGame: game.id,
-            date: game.date,
-            time: game.time,
-            fouls: [],
-            points: [],
-            quarter: 1,
-            extraquarter: 0,
+            idTeam: team,
         }
-        this.scoreCollection.doc(id).set(score)
+        await this.scoreCollection.doc(id).set(score)
         return id;
     }
 
+
+    addPoints(idScore: string, idPlayer: string, points: number, quarter: number, time: string) {
+        const itemRef = this.db.doc<Score>(`/Scores/${idScore}/`);
+        const id = this.db.createId()
+        const point: Point = {
+            idPlayer: idPlayer,
+            quarter: quarter,
+            time: time,
+            points: points
+        }
+        itemRef.collection<Point>("points").doc(id).set(point)
+    }
+
+    getAllPoints(idScore: string) {
+        return this.db
+            .collection<Point>(`/Score/${idScore}/points`).snapshotChanges()
+            .pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Point;
+                    const id = a.payload.doc.id;
+                    return { ...data, id };
+                }
+                ))
+            )
+    }
 
 }
