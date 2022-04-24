@@ -48,6 +48,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PlayersComponent } from './score/players/players.component';
 
 
 @NgModule({
@@ -60,6 +61,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AgendaComponent,
     ChecklistComponent,
     TeamScoreComponent,
+    PlayersComponent,
   ],
   imports: [
     CommonModule,

@@ -40,6 +40,36 @@ export class PlayerService {
         return player;
     }
 
+    getAllPlayers() {
+        return this.db
+            .collection<Player>(`/Players`).snapshotChanges()
+            .pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Player;
+                    const id = a.payload.doc.id;
+                    return { ...data, id };
+                }
+                ))
+            )
+    }
+
+    getTeamPlayers(idTeam: string) {
+        let players = this.db.collection<Player>("Players", ref =>
+            ref
+                .where('idTeams', 'array-contains', idTeam)
+                .orderBy('name')
+                .limit(100));
+        return players.snapshotChanges()
+            .pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data() as Player;
+                    const id = a.payload.doc.id;
+                    return { ...data, id };
+                }
+                ))
+            )
+    }
+
     getPlayerByName(name: string) {
         let players = this.db.collection<Player>("Players", ref =>
             ref
