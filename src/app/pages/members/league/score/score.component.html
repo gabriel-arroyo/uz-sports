@@ -10,8 +10,12 @@
       <div>{{ 1 }}</div>
     </div>
     <button class="button">Finalizar</button>
-    <div class="clock">01:28</div>
-    <div class="timer">24</div>
+    <div class="clock" (click)="toggleTimer()">
+      {{ timerDisplay.minutes.digit1 }}{{ timerDisplay.minutes.digit2 }}:{{
+        timerDisplay.seconds.digit1
+      }}{{ timerDisplay.seconds.digit2 }}
+    </div>
+    <div class="timer" (click)="resetShotTimer()">{{ shotTimer }}</div>
   </div>
   <app-team-score></app-team-score>
 </div>

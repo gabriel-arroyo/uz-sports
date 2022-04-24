@@ -9,6 +9,7 @@ import { TeamService } from 'src/app/services/team.service';
 import { PlayerService } from 'src/app/services/player.service';
 import { Team } from 'src/app/core/models/team';
 import { Player } from 'src/app/core/models/player';
+import { timer } from "rxjs";
 
 @Component({
   selector: 'app-score',
@@ -16,6 +17,15 @@ import { Player } from 'src/app/core/models/player';
   styleUrls: ['./score.component.scss'],
 })
 export class ScoreComponent implements OnInit {
+  timerDisplay = {
+    minutes: { digit1: '0', digit2: '0' },
+    seconds: { digit1: '0', digit2: '0' },
+  }
+  isRunning: boolean = false
+  shotTimer: number = 24
+  timespan: number = 0
+  seconds: number = 0
+  minutes: number = 0
   totalScore1: number = 0
   totalScore2: number = 0
   team1: Team = {
@@ -56,6 +66,21 @@ export class ScoreComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    timer(0, 1000).subscribe(() => {
+      if (this.isRunning) {
+        this.timespan++;
+        this.timerDisplay = this.getDisplayTimer(this.timespan);
+      }
+    });
+    timer(0, 1000).subscribe(() => {
+      if (this.isRunning) {
+        this.shotTimer--
+        if (this.shotTimer < 1) {
+          this.shotTimer = 24
+          this.isRunning = false
+        }
+      }
+    })
     // this.gameService.createGame(
     //   "rDQpMX3YBnuWjQ4RBzYI",
     //   "6CbkplTSDym5rB3H5CT9",
@@ -98,6 +123,10 @@ export class ScoreComponent implements OnInit {
     this.totalScore2 = 3
   }
 
+  toggleTimer() {
+    this.isRunning = !this.isRunning;
+    this.resetShotTimer()
+  }
 
   totalPoints = (points: Point[]) => {
     return points.reduce((a, b) => a + (b["points"] || 0), 0)
@@ -106,5 +135,17 @@ export class ScoreComponent implements OnInit {
   addPoints = () => {
 
   }
+  getDisplayTimer(time: number) {
+    const minutes = '0' + Math.floor(time % 3600 / 60);
+    const seconds = '0' + Math.floor(time % 3600 % 60);
 
+    return {
+      minutes: { digit1: minutes.slice(-2, -1), digit2: minutes.slice(-1) },
+      seconds: { digit1: seconds.slice(-2, -1), digit2: seconds.slice(-1) },
+    };
+  }
+
+  resetShotTimer() {
+    this.shotTimer = 24
+  }
 }
