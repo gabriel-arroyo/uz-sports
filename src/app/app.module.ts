@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 
+// Material
+import { MaterialFullModule } from '../material.module';
+
 // Firebase
 //import { AngularFireModule } from '@angular/fire';
 import { AngularFireModule } from "@angular/fire/compat";
@@ -27,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFirestoreModule, // Only required for database features
     AngularFireAuthModule, // Only required for auth features,
     AngularFireStorageModule, // Only required for storage features
-    AngularFireDatabaseModule, BrowserAnimationsModule
+    AngularFireDatabaseModule, BrowserAnimationsModule,
+    MaterialFullModule
   ],
   providers: [],
   bootstrap: [AppComponent]

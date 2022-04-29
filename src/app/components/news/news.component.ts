@@ -7,9 +7,9 @@ import { News } from 'src/app/core/models/news';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  @Input() article: News = {title: 'news', content: 'news', imageUrl: ''};
+  @Input() article: News = { title: 'news', content: 'news', imageUrl: '', idLeague: '' };
 
-  constructor() {}
+  constructor() { }
 
-ngOnInit():void{}
+  ngOnInit(): void { }
 }

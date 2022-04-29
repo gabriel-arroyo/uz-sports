@@ -49,6 +49,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PlayersComponent } from './score/players/players.component';
+import { AddTournamentComponent } from './add-tournament/add-tournament.component';
+import { RoleMakerComponent } from './rol-maker/rol-maker.component';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { PlayersComponent } from './score/players/players.component';
     ChecklistComponent,
     TeamScoreComponent,
     PlayersComponent,
+    AddTournamentComponent,
+    RoleMakerComponent,
   ],
   imports: [
     CommonModule,

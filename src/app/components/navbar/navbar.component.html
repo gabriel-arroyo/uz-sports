@@ -1,15 +1,22 @@
-
 <div class="container">
-  <div class="icons"><img class="navbar-icon" src="../../../assets/images/home.svg" alt="home"></div>
+  <div class="icons">
+    <img class="navbar-icon" src="../../../assets/images/home.svg" alt="home" />
+  </div>
   <div class="links">
     <ul>
       <li *ngFor="let page of pages">
-        {{page}}
+        <!-- <a href="{{ page.url }}">{{ page.title }}</a> -->
+        <button mat-button [matMenuTriggerFor]="menu">{{ page.title }}</button>
+        <mat-menu #menu="matMenu">
+          <button *ngFor="let child of page.children" mat-menu-item>
+            <a href="{{ child.url }}">{{ child.title }}</a>
+          </button>
+        </mat-menu>
       </li>
     </ul>
   </div>
   <div class="login">
-    <img class="navbar-icon" src="../../../assets/images/user.svg" alt="user">
+    <img class="navbar-icon" src="../../../assets/images/user.svg" alt="user" />
     <div class="circle"></div>
   </div>
 </div>

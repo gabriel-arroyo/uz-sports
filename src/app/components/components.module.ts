@@ -9,6 +9,9 @@ import { NewsComponent } from './news/news.component';
 import { NewsBarComponent } from './news-bar/news-bar.component';
 import { GaleryBarComponent } from './galery-bar/galery-bar.component';
 import { ThisisuzComponent } from './thisisuz/thisisuz.component';
+import { MaterialFullModule } from 'src/material.module';
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { ThisisuzComponent } from './thisisuz/thisisuz.component';
     ThisisuzComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialFullModule
   ]
 })
 export class ComponentsModule { }

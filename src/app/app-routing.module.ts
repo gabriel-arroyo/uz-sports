@@ -6,6 +6,7 @@ import { ScoreComponent } from './pages/members/league/score/score.component';
 import { AgendaComponent } from './pages/members/league/agenda/agenda.component';
 import { ChecklistComponent } from './pages/members/league/checklist/checklist.component';
 import { PlayersComponent } from './pages/members/league/score/players/players.component';
+import { RoleMakerComponent } from './pages/members/league/rol-maker/rol-maker.component';
 
 const routes: Routes = [
   { path: 'home', loadChildren: () => import('src/app/pages/pages.module').then((m) => m.PagesModule), component: HomeComponent },
@@ -14,8 +15,8 @@ const routes: Routes = [
   { path: 'agenda', loadChildren: () => import('src/app/pages/pages.module').then((m) => m.PagesModule), component: AgendaComponent },
   { path: 'checklist', loadChildren: () => import('src/app/pages/pages.module').then((m) => m.PagesModule), component: ChecklistComponent },
   { path: 'score-players', loadChildren: () => import('src/app/pages/pages.module').then((m) => m.PagesModule), component: PlayersComponent },
+  { path: 'rol-maker', loadChildren: () => import('src/app/pages/pages.module').then((m) => m.PagesModule), component: RoleMakerComponent },
   { path: '**', loadChildren: () => import('src/app/pages/pages.module').then((m) => m.PagesModule), component: HomeComponent },
-
 ];
 
 @NgModule({

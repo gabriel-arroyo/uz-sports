@@ -1,5 +1,6 @@
-export interface News{
-  title:string;
-  content:string;
-  imageUrl:string;
+export interface News {
+  title: string;
+  content: string;
+  imageUrl: string;
+  idLeague: string;
 }
