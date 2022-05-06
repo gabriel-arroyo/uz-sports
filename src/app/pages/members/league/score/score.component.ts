@@ -121,6 +121,11 @@ export class ScoreComponent implements OnInit {
       }
     )
     this.totalScore2 = 3
+    this.scoreService.getPoints('5Kxt5LnIAoZuemBR5Wio').subscribe(
+      score => {
+        this.totalScore2 = this.totalPoints(score)
+      }
+    );
   }
 
   toggleTimer() {
