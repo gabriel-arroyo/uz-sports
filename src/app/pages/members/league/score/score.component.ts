@@ -130,7 +130,6 @@ export class ScoreComponent implements OnInit {
 
   toggleTimer() {
     this.isRunning = !this.isRunning;
-    this.resetShotTimer()
   }
 
   totalPoints = (points: Point[]) => {

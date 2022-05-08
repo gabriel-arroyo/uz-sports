@@ -1,0 +1,39 @@
+[debug] [2022-05-07T19:40:53.244Z] ----------------------------------------------------------------------
+[debug] [2022-05-07T19:40:53.246Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\morcar\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2022-05-07T19:40:53.247Z] CLI Version:   10.1.2
+[debug] [2022-05-07T19:40:53.247Z] Platform:      win32
+[debug] [2022-05-07T19:40:53.247Z] Node Version:  v16.13.1
+[debug] [2022-05-07T19:40:53.249Z] Time:          Sat May 07 2022 14:40:53 GMT-0500 (Central Daylight Time)
+[debug] [2022-05-07T19:40:53.249Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-05-07T19:40:53.253Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+ 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=981090082&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2022-05-07T19:41:08.937Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+ {"code":"4/0AX4XfWi-Z4rMLvt5z6LdyPUyQehKrAj_A34Zwl9f47Mifn1ckjbn1Nf0NVDGbdU35EyWzQ","client_id":"563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com","client_secret":"j9iVZfS8kkCEFUPaAeJV0sAi","redirect_uri":"http://localhost:9005","grant_type":"authorization_code"}
+[debug] [2022-05-07T19:41:09.172Z] Token Fetch Error: FirebaseError: Server Error. tunneling socket could not be established, cause=getaddrinfo ENOTFOUND interproxy.us164.corpintra.net
+    at Request._callback (C:\Users\morcar\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:32:31)
+    at self.callback (C:\Users\morcar\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (node:events:390:28)
+    at Request.emit (node:domain:475:12)
+    at Request.onRequestError (C:\Users\morcar\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:882:8)
+    at ClientRequest.emit (node:events:390:28)
+    at ClientRequest.emit (node:domain:475:12)
+    at ClientRequest.onError (C:\Users\morcar\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\tunnel-agent\index.js:179:21)
+    at Object.onceWrapper (node:events:510:26)
+    at ClientRequest.emit (node:events:390:28)
+    at ClientRequest.emit (node:domain:475:12)
+    at Socket.socketErrorListener (node:_http_client:447:9)
+    at Socket.emit (node:events:390:28)
+    at Socket.emit (node:domain:475:12)
+    at emitErrorNT (node:internal/streams/destroy:157:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:122:3)
+[info] 
+[info] Visit this URL on any device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=981090082&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob
+[info] 
