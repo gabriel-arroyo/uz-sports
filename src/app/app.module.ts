@@ -17,6 +17,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireAuthModule, // Only required for auth features,
     AngularFireStorageModule, // Only required for storage features
     AngularFireDatabaseModule, BrowserAnimationsModule,
-    MaterialFullModule
+    MaterialFullModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
