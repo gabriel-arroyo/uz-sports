@@ -3,7 +3,7 @@ export interface Player {
     name: string,
     number: number,
     idTeams: string[],
-    photo?: string,
+    photoUrl?: string,
     birthday?: string,
     address?: string,
     position?: string,
