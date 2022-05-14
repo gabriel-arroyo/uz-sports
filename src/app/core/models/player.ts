@@ -1,8 +1,8 @@
 export interface Player {
-    id: string,
+    id?: string,
     name: string,
     number: number,
-    idTeams: string[],
+    idTeams?: string[],
     photoUrl?: string,
     birthday?: string,
     address?: string,
