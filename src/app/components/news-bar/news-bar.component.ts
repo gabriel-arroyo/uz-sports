@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { News } from 'src/app/core/models/news';
+import { News } from 'src/app/core/models/News';
 
 @Component({
   selector: 'app-news-bar',
   templateUrl: './news-bar.component.html',
-  styleUrls: ['./news-bar.component.scss']
+  styleUrls: ['./news-bar.component.scss'],
 })
 export class NewsBarComponent implements OnInit {
-  @Input() news: News[]= [];
+  @Input() news: News[] = [];
 
   constructor() {}
 
-ngOnInit():void{}
+  ngOnInit(): void {}
 }

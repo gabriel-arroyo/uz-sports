@@ -3,14 +3,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/core/models/user';
-import { Player } from 'src/app/core/models/player';
+import { User } from 'src/app/core/models/User';
+import { Player } from 'src/app/core/models/Player';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup;
@@ -23,56 +23,57 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private playerService: PlayerService,
-    ) {
+    private playerService: PlayerService
+  ) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       contact: ['', Validators.required],
       roles: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
       number: [''],
-      position:[''],
-      teams:[''],
-      photoUrl:[''],
-      birthday:[''],
-      address:[''],
-      mail:[''],
-      social:['']
+      position: [''],
+      teams: [''],
+      photoUrl: [''],
+      birthday: [''],
+      address: [''],
+      mail: [''],
+      social: [''],
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   goToHome() {
     this.router.navigate(['/']);
   }
 
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
   onSubmit() {
     let user: User = {
-      name: this.form.get("name")?.value,
-      photoUrl: this.form.get("photoUrl")?.value,
-      contact: this.form.get("contact")?.value ,
-      roles: ["player"],
-    }
-    let player:Player ={
-      name: this.form.get("name")?.value,
-      number: this.form.get("number")?.value || 0,
-      photoUrl: this.form.get("photoUrl")?.value,
-      contact: this.form.get("contact")?.value ,
-      birthday: this.form.get("birthday")?.value,
-      address: this.form.get("address")?.value,
-      position: this.form.get("position")?.value,
-      mail: this.form.get("mail")?.value,
-      social: this.form.get("social")?.value
-    }
+      name: this.form.get('name')?.value,
+      photoUrl: this.form.get('photoUrl')?.value,
+      contact: this.form.get('contact')?.value,
+      roles: ['player'],
+    };
+    let player: Player = {
+      name: this.form.get('name')?.value,
+      number: this.form.get('number')?.value || 0,
+      photoUrl: this.form.get('photoUrl')?.value,
+      contact: this.form.get('contact')?.value,
+      birthday: this.form.get('birthday')?.value,
+      address: this.form.get('address')?.value,
+      position: this.form.get('position')?.value,
+      mail: this.form.get('mail')?.value,
+      social: this.form.get('social')?.value,
+    };
     // this.userService.createUser(user);
     // alert("el registro se realizó con éxito");
     // this.goToHome()
-    this.userService.createUser(user)
-    this.playerService.createPlayer(player)
-    console.log("test")
+    this.userService.createUser(user);
+    this.playerService.createPlayer(player);
+    console.log('test');
     this.submitted = true;
 
     // reset alerts on submit
@@ -80,7 +81,7 @@ export class RegisterComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.form.invalid) {
-      console.log("form invalid")
+      console.log('form invalid');
       return;
     }
 

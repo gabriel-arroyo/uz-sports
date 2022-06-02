@@ -1,1 +1,15 @@
-<p>add-tournament works!</p>
+<h2>Registro de torneos</h2>
+
+<mat-form-field appearance="fill">
+  <mat-label>Selecciona tu liga</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let league of leagues" [value]="league.name">
+      {{ league.name }}
+    </mat-option>
+    <mat-option [value]="'new'">Registrar nueva liga ...</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <button class="button" type="submit">Enviar</button>
+</form>

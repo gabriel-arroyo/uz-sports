@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
-import * as dayjs from 'dayjs'
-import { Game } from 'src/app/core/models/game';
-import { Point, Score } from 'src/app/core/models/score';
+import * as dayjs from 'dayjs';
+import { Game } from 'src/app/core/models/Game';
+import { Point, Score } from 'src/app/core/models/Score';
 import { ScoreService } from 'src/app/services/score.service';
 import { map } from 'rxjs';
 import { TeamService } from 'src/app/services/team.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { Team } from 'src/app/core/models/team';
-import { Player } from 'src/app/core/models/player';
-import { timer } from "rxjs";
+import { Team } from 'src/app/core/models/Team';
+import { Player } from 'src/app/core/models/Player';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-score',
@@ -20,50 +20,50 @@ export class ScoreComponent implements OnInit {
   timerDisplay = {
     minutes: { digit1: '0', digit2: '0' },
     seconds: { digit1: '0', digit2: '0' },
-  }
-  isRunning: boolean = false
-  shotTimer: number = 24
-  timespan: number = 0
-  seconds: number = 0
-  minutes: number = 0
-  totalScore1: number = 0
-  totalScore2: number = 0
+  };
+  isRunning: boolean = false;
+  shotTimer: number = 24;
+  timespan: number = 0;
+  seconds: number = 0;
+  minutes: number = 0;
+  totalScore1: number = 0;
+  totalScore2: number = 0;
   team1: Team = {
-    name: "team1",
-    category: "male",
-    city: "Saltillo",
-  }
+    name: 'team1',
+    category: 'male',
+    city: 'Saltillo',
+  };
   team2: Team = {
-    name: "team2",
-    category: "male",
-    city: "Saltillo",
-  }
-  array: any[] = []
+    name: 'team2',
+    category: 'male',
+    city: 'Saltillo',
+  };
+  array: any[] = [];
   game: Game = {
-    id: "",
-    idScore1: "",
-    idScore2: "",
-    idTeam1: "",
-    idTeam2: "",
-    date: dayjs().format("YYYY/MM/DD"),
-    time: dayjs().format("HH:mm")
-  }
-  points1: Point[] = []
+    id: '',
+    idScore1: '',
+    idScore2: '',
+    idTeam1: '',
+    idTeam2: '',
+    date: dayjs().format('YYYY/MM/DD'),
+    time: dayjs().format('HH:mm'),
+  };
+  points1: Point[] = [];
   scoreTeam1: Score = {
-    id: "",
-    idTeam: "",
-  }
+    id: '',
+    idTeam: '',
+  };
   scoreTeam2: Score = {
-    id: "",
-    idTeam: "",
-  }
+    id: '',
+    idTeam: '',
+  };
 
   constructor(
     private gameService: GameService,
     private scoreService: ScoreService,
     private teamService: TeamService,
-    private playerService: PlayerService,
-  ) { }
+    private playerService: PlayerService
+  ) {}
 
   ngOnInit(): void {
     timer(0, 1000).subscribe(() => {
@@ -74,13 +74,13 @@ export class ScoreComponent implements OnInit {
     });
     timer(0, 1000).subscribe(() => {
       if (this.isRunning) {
-        this.shotTimer--
+        this.shotTimer--;
         if (this.shotTimer < 1) {
-          this.shotTimer = 24
-          this.isRunning = false
+          this.shotTimer = 24;
+          this.isRunning = false;
         }
       }
-    })
+    });
     // this.gameService.createGame(
     //   "rDQpMX3YBnuWjQ4RBzYI",
     //   "6CbkplTSDym5rB3H5CT9",
@@ -111,21 +111,17 @@ export class ScoreComponent implements OnInit {
     //     })
     //   }
     // })
-    this.scoreService.getAllPoints("kX5RIatU4DBCmaX5YV27").subscribe(
-      points => this.points1 = points
-    )
-    this.scoreService.getPoints("kX5RIatU4DBCmaX5YV27").subscribe(
-      score => {
-        this.points1 = score
-        this.totalScore1 = this.totalPoints(score)
-      }
-    )
-    this.totalScore2 = 3
-    this.scoreService.getPoints('5Kxt5LnIAoZuemBR5Wio').subscribe(
-      score => {
-        this.totalScore2 = this.totalPoints(score)
-      }
-    );
+    this.scoreService
+      .getAllPoints('kX5RIatU4DBCmaX5YV27')
+      .subscribe((points) => (this.points1 = points));
+    this.scoreService.getPoints('kX5RIatU4DBCmaX5YV27').subscribe((score) => {
+      this.points1 = score;
+      this.totalScore1 = this.totalPoints(score);
+    });
+    this.totalScore2 = 3;
+    this.scoreService.getPoints('5Kxt5LnIAoZuemBR5Wio').subscribe((score) => {
+      this.totalScore2 = this.totalPoints(score);
+    });
   }
 
   toggleTimer() {
@@ -133,15 +129,13 @@ export class ScoreComponent implements OnInit {
   }
 
   totalPoints = (points: Point[]) => {
-    return points.reduce((a, b) => a + (b["points"] || 0), 0)
-  }
+    return points.reduce((a, b) => a + (b['points'] || 0), 0);
+  };
 
-  addPoints = () => {
-
-  }
+  addPoints = () => {};
   getDisplayTimer(time: number) {
-    const minutes = '0' + Math.floor(time % 3600 / 60);
-    const seconds = '0' + Math.floor(time % 3600 % 60);
+    const minutes = '0' + Math.floor((time % 3600) / 60);
+    const seconds = '0' + Math.floor((time % 3600) % 60);
 
     return {
       minutes: { digit1: minutes.slice(-2, -1), digit2: minutes.slice(-1) },
@@ -150,6 +144,6 @@ export class ScoreComponent implements OnInit {
   }
 
   resetShotTimer() {
-    this.shotTimer = 24
+    this.shotTimer = 24;
   }
 }

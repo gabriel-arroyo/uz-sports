@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Team } from 'src/app/core/models/team';
+import { Team } from 'src/app/core/models/Team';
 import { TeamService } from 'src/app/services/team.service';
 
 @Component({
   selector: 'app-rol-maker',
   templateUrl: './rol-maker.component.html',
-  styleUrls: ['./rol-maker.component.scss']
+  styleUrls: ['./rol-maker.component.scss'],
 })
 export class RoleMakerComponent implements OnInit {
-  teams: Team[] = []
+  teams: Team[] = [];
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService) {}
 
   ngOnInit(): void {
-    this.teamService.teams.subscribe(t => this.teams = t)
+    this.teamService.teams.subscribe((t) => (this.teams = t));
   }
-
 }

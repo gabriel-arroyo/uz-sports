@@ -1,17 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NavItem } from 'src/app/core/models/navitem';
+import { NavItem } from 'src/app/core/models/Navitem';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   @Input() pages: NavItem[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

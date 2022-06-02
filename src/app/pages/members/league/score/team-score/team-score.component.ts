@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Score } from '../../../../../core/models/score';
+import { Score } from '../../../../../core/models/Score';
 import { ScoreService } from 'src/app/services/score.service';
 import { MatButtonModule } from '@angular/material/button';
 import { GameService } from 'src/app/services/game.service';
@@ -20,7 +20,13 @@ export class TeamScoreComponent implements OnInit {
   create() {}
 
   onePointer() {
-    this.scoreService.addPoints(this.idScore, 'rDQpMX3YBnuWjQ4RBzYI', 1, 1, '1:11');
+    this.scoreService.addPoints(
+      this.idScore,
+      'rDQpMX3YBnuWjQ4RBzYI',
+      1,
+      1,
+      '1:11'
+    );
   }
   twoPointer() {
     this.scoreService.addPoints(

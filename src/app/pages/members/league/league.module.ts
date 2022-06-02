@@ -10,7 +10,7 @@ import { AgendaComponent } from './agenda/agenda.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { TeamScoreComponent } from './score/team-score/team-score.component';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Material
 import { MatDialogModule } from '@angular/material/dialog';
@@ -52,7 +52,6 @@ import { PlayersComponent } from './score/players/players.component';
 import { AddTournamentComponent } from './add-tournament/add-tournament.component';
 import { RoleMakerComponent } from './rol-maker/rol-maker.component';
 
-
 @NgModule({
   declarations: [
     TournamentComponent,
@@ -71,6 +70,7 @@ import { RoleMakerComponent } from './rol-maker/rol-maker.component';
     CommonModule,
     ComponentsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     MatAutocompleteModule,
     MatBadgeModule,
@@ -107,7 +107,7 @@ import { RoleMakerComponent } from './rol-maker/rol-maker.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    MatFormFieldModule
-  ]
+    MatFormFieldModule,
+  ],
 })
-export class LeagueModule { }
+export class LeagueModule {}

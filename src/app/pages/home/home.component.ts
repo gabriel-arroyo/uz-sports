@@ -1,27 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import { throwIfEmpty } from 'rxjs';
 import { TitleComponent } from 'src/app/components/title/title.component';
-import { NavItem } from 'src/app/core/models/navitem';
-import { News } from 'src/app/core/models/news';
+import { NavItem } from 'src/app/core/models/Navitem';
+import { News } from 'src/app/core/models/News';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   pages: NavItem[] = [
-    { title: "This is uz", url: '/home' },
-    { title: "League", url: '/score', children: [{ title: "Rol Maker", url: "/rol-maker" }, { title: "Score", url: "/score" }] },
-    { title: "Community", url: '/home' }];
-  leagues = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
-  news: News[] = []
+    { title: 'This is uz', url: '/home' },
+    {
+      title: 'League',
+      url: '/score',
+      children: [
+        { title: 'Rol Maker', url: '/rol-maker' },
+        { title: 'Score', url: '/score' },
+      ],
+    },
+    { title: 'Community', url: '/home' },
+  ];
+  leagues = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'];
+  news: News[] = [];
 
-  constructor(private newsService: NewsService) {
-  }
-
-
+  constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
     // this.newsService.createNews({
@@ -30,12 +35,9 @@ export class HomeComponent implements OnInit {
     //   imageUrl: "https://concepto.de/wp-content/uploads/2019/12/basquetbol-baloncesto-e1575657099957-800x399.jpg",
     //   idLeague: "1"
     // })
-    this.newsService.getNewsByLeague("1").subscribe(n => {
-      console.log(n)
-      this.news = n
-    })
+    this.newsService.getNewsByLeague('1').subscribe((n) => {
+      console.log(n);
+      this.news = n;
+    });
   }
-
 }
-
-
