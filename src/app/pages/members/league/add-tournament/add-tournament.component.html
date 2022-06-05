@@ -1,15 +1,194 @@
 <h2>Registro de torneos</h2>
 
-<mat-form-field appearance="fill">
-  <mat-label>Selecciona tu liga</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let league of leagues" [value]="league.name">
-      {{ league.name }}
-    </mat-option>
-    <mat-option [value]="'new'">Registrar nueva liga ...</mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="container">
+  <mat-form-field appearance="fill" style="width: 40vw">
+    <mat-label>Selecciona tu liga</mat-label>
+    <mat-select [(ngModel)]="selectedLeague">
+      <mat-option *ngFor="let league of leagues" [value]="league.name">
+        {{ league.name }}
+      </mat-option>
+      <mat-option [value]="'new'">Registrar nueva liga ...</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <button class="button" type="submit">Enviar</button>
-</form>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    style="display: flex; flex-direction: column; width: 50vw"
+  >
+    <h3 *ngIf="selectedLeague == 'new'">Nueva Liga</h3>
+    <mat-form-field appearance="fill" *ngIf="selectedLeague == 'new'">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="leagueName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" *ngIf="selectedLeague == 'new'">
+      <mat-label>Región</mat-label>
+      <mat-select formControlName="region">
+        <mat-option value="Norte">Norte</mat-option>
+        <mat-option value="Sur">Sur</mat-option>
+        <mat-option value="Este">Este</mat-option>
+        <mat-option value="Oeste">Oeste</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <h3>Nuevo Torneo</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rango de fechas</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input
+          matStartDate
+          placeholder="Start date"
+          formControlName="startDate"
+        />
+        <input matEndDate placeholder="End date" formControlName="endDate" />
+      </mat-date-range-input>
+      <!-- <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint> -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <div class="days">
+      <mat-checkbox [formControl]="monday">L</mat-checkbox>
+      <mat-checkbox [formControl]="tuesday">M</mat-checkbox>
+      <mat-checkbox [formControl]="wednesday">Mi</mat-checkbox>
+      <mat-checkbox [formControl]="thursday">J</mat-checkbox>
+      <mat-checkbox [formControl]="friday">V</mat-checkbox>
+      <mat-checkbox [formControl]="saturday">S</mat-checkbox>
+      <mat-checkbox [formControl]="sunday">D</mat-checkbox>
+    </div>
+
+    <div
+      style="display: flex; flex-direction: row; justify-content: space-around"
+    >
+      <mat-form-field appearance="fill">
+        <mat-label>Hora de inicio</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          type="time"
+          id="appt"
+          name="appt"
+          min="09:00"
+          max="18:00"
+          formControlName="startTime"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Hora de fin</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          type="time"
+          id="appt"
+          name="appt"
+          min="09:00"
+          max="18:00"
+          formControlName="endTime"
+        />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Dirección</mat-label>
+      <input matInput formControlName="address" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Ciudad</mat-label>
+      <input matInput formControlName="city" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <input matInput formControlName="state" />
+    </mat-form-field>
+
+    <!-- <div class="courts" formGroupName="courts">
+      <mat-checkbox
+        *ngFor="let court of courtsList"
+        [formControlName]="court"
+        [value]="court"
+        >{{ court }}</mat-checkbox
+      >
+    </div> -->
+
+    <mat-form-field appearance="fill">
+      <mat-label>Canchas</mat-label>
+      <input matInput formControlName="courts" type="number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tamaño</mat-label>
+      <mat-select formControlName="size">
+        <mat-option *ngFor="let size of sizes" [value]="size">
+          {{ size }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Categoría</mat-label>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Costo Referee</mat-label>
+      <div style="display: flex; flex-direction: row">
+        <span class="prefix" style="margin-right: 10px">$ </span>
+        <input
+          matInput
+          formControlName="priceReferee"
+          type="number"
+          min="1"
+          step="any"
+        />
+      </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Costo Registro</mat-label>
+      <div style="display: flex; flex-direction: row">
+        <span class="prefix" style="margin-right: 10px">$ </span>
+        <input
+          matInput
+          formControlName="priceRegistration"
+          type="number"
+          min="1"
+          step="any"
+        />
+      </div>
+    </mat-form-field>
+
+    <div class="form-group">
+      <label for="rules" style="margin-right: 10px">Reglas </label>
+      <input formControlName="rules" type="file" id="myFile" name="filename" />
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Contacto</mat-label>
+      <input matInput formControlName="contact" />
+    </mat-form-field>
+
+    <button class="button" type="submit">Enviar</button>
+  </form>
+</div>

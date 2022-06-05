@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-league {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  margin-bottom: 6vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.days,
+.courts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+mat-checkbox {
+  margin-right: 10px;
+}
