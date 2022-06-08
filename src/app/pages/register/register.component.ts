@@ -3,9 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
-import { User } from 'src/app/core/models/User';
-import { Player } from 'src/app/core/models/Player';
 import { PlayerService } from 'src/app/services/player.service';
+import { Player, User } from 'src/app/core/models/models';
 
 @Component({
   selector: 'app-register',

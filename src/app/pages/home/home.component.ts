@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { throwIfEmpty } from 'rxjs';
 import { TitleComponent } from 'src/app/components/title/title.component';
-import { NavItem } from 'src/app/core/models/Navitem';
-import { News } from 'src/app/core/models/News';
+import { NavItem, News } from 'src/app/core/models/models';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({

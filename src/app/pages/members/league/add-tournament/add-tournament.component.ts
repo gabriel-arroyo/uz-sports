@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { League } from '../../../../core/models/League';
+import { League } from 'src/app/core/models/models';
 
 @Component({
   selector: 'app-add-tournament',

@@ -6,7 +6,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import * as dayjs from 'dayjs';
 import { map, Observable } from 'rxjs';
-import { Game } from '../core/models/Game';
+import { Game } from '../core/models/models';
 import { ScoreService } from './score.service';
 
 @Injectable({

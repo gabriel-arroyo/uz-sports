@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Score } from '../../../../../core/models/Score';
 import { ScoreService } from 'src/app/services/score.service';
 import { MatButtonModule } from '@angular/material/button';
 import { GameService } from 'src/app/services/game.service';
+import { Score } from 'src/app/core/models/models';
 
 @Component({
   selector: 'app-team-score',

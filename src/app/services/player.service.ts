@@ -5,7 +5,7 @@ import {
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
-import { Player } from '../core/models/Player';
+import { Player } from '../core/models/models';
 
 @Injectable({
   providedIn: 'root',

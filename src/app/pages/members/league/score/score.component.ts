@@ -1,15 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GameService } from 'src/app/services/game.service';
 import * as dayjs from 'dayjs';
-import { Game } from 'src/app/core/models/Game';
-import { Point, Score } from 'src/app/core/models/Score';
 import { ScoreService } from 'src/app/services/score.service';
 import { map } from 'rxjs';
 import { TeamService } from 'src/app/services/team.service';
 import { PlayerService } from 'src/app/services/player.service';
-import { Team } from 'src/app/core/models/Team';
-import { Player } from 'src/app/core/models/Player';
 import { timer } from 'rxjs';
+import { Game, Point, Score, Team } from 'src/app/core/models/models';
 
 @Component({
   selector: 'app-score',

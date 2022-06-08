@@ -6,11 +6,9 @@ import {
 } from '@angular/fire/compat/firestore';
 import { map, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Foul, Point, Score } from '../core/models/Score';
 import * as dayjs from 'dayjs';
-import { Game } from '../core/models/Game';
-import { Player } from '../core/models/Player';
 import { query } from '@angular/animations';
+import { Game, Point, Score } from '../core/models/models';
 
 @Injectable({
   providedIn: 'root',
