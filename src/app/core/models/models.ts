@@ -10,6 +10,7 @@ export interface Coach {
     speciality?: string,
     photoUrl?: string,
     contact?: string,
+    timestamp:string,
 }
 
 export interface User {
@@ -17,6 +18,7 @@ export interface User {
     photoUrl?: string,
     contact: string,
     roles: string[],
+    timestamp:string,
 }
 
 import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
@@ -33,6 +35,7 @@ export interface Team {
     contact?: string,
     social?: string,
     likes?: number,
+    timestamp:string,
 }
 
 export interface Score {
@@ -60,6 +63,7 @@ export interface Referee {
     experience?: string,
     photoUrl?: string,
     contact?: string,
+    timestamp:string,
 }
 
 export interface Player {
@@ -76,19 +80,22 @@ export interface Player {
     contact?: string,
     social?: string,
     likes?: number,
+    timestamp:string,
 }
 
 export interface News {
-  title: string;
-  content: string;
-  imageUrl: string;
-  idLeague: string;
+  title: string,
+  content: string,
+  imageUrl: string,
+    idLeague: string,
+    timestamp:string,
 }
 
 
 export interface League {
-  name: string;
-  region: string;
+  name: string,
+    region: string,
+    timestamp:string,
 }
 
 export interface Game {
@@ -101,4 +108,5 @@ export interface Game {
     time: string,
     quarter?: number,
     extraquarter?: number,
+    timestamp:string,
 }

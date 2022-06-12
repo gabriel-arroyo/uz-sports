@@ -24,6 +24,7 @@ export class ScoreService {
     idTeam2: '',
     date: dayjs().format('YYYY/MM/DD'),
     time: dayjs().format('HH:mm'),
+     timestamp: new Date().toISOString()
   };
 
   constructor(public fb: AngularFirestore) {

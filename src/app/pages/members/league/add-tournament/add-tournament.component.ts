@@ -49,11 +49,29 @@ export class AddTournamentComponent implements OnInit {
   });
   courts = <FormGroup>this.form.get('courts');
 
-  leagues: League[] = [{ name: 'TNB', region: 'South' }];
+  leagues: League[] = [{ name: 'TNB', region: 'South',  timestamp: new Date().toISOString() }];
 
   types = ['Aire libre', 'Gimnasio'];
   sizes = ['Profesional', 'Semi-Profesional', 'Infantil'];
   categories = ['Varonil', 'Femenil', 'Mixto'];
+
+
+
+  // Equipo
+  teamForm = this.formBuilder.group({
+    name: '',
+    logo: '',
+    photo: '',
+    category: '',
+    birthday: '',
+    city: '',
+    captain: '',
+    players: [],
+    mail: '',
+    contact: '',
+    social:''
+  })
+
 
   constructor(private formBuilder: FormBuilder) {}
 

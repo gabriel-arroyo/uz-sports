@@ -20,7 +20,7 @@ export class ScoreComponent implements OnInit {
   };
   isRunning: boolean = false;
   shotTimer: number = 24;
-  timespan: number = 0;
+  timespan: number = 10*60;
   seconds: number = 0;
   minutes: number = 0;
   totalScore1: number = 0;
@@ -29,11 +29,13 @@ export class ScoreComponent implements OnInit {
     name: 'team1',
     category: 'male',
     city: 'Saltillo',
+     timestamp: new Date().toISOString()
   };
   team2: Team = {
     name: 'team2',
     category: 'male',
     city: 'Saltillo',
+     timestamp: new Date().toISOString()
   };
   array: any[] = [];
   game: Game = {
@@ -44,6 +46,7 @@ export class ScoreComponent implements OnInit {
     idTeam2: '',
     date: dayjs().format('YYYY/MM/DD'),
     time: dayjs().format('HH:mm'),
+     timestamp: new Date().toISOString()
   };
   points1: Point[] = [];
   scoreTeam1: Score = {
@@ -65,7 +68,7 @@ export class ScoreComponent implements OnInit {
   ngOnInit(): void {
     timer(0, 1000).subscribe(() => {
       if (this.isRunning) {
-        this.timespan++;
+        this.timespan--;
         this.timerDisplay = this.getDisplayTimer(this.timespan);
       }
     });

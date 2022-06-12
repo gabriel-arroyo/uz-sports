@@ -55,6 +55,7 @@ export class RegisterComponent implements OnInit {
       photoUrl: this.form.get('photoUrl')?.value,
       contact: this.form.get('contact')?.value,
       roles: ['player'],
+       timestamp: new Date().toISOString()
     };
     let player: Player = {
       name: this.form.get('name')?.value,
@@ -66,6 +67,7 @@ export class RegisterComponent implements OnInit {
       position: this.form.get('position')?.value,
       mail: this.form.get('mail')?.value,
       social: this.form.get('social')?.value,
+       timestamp: new Date().toISOString()
     };
     // this.userService.createUser(user);
     // alert("el registro se realizó con éxito");

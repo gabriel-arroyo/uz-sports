@@ -78,6 +78,7 @@ export class GameService {
       time: time,
       quarter: 1,
       extraquarter: 0,
+       timestamp: new Date().toISOString()
     };
     // const res = await this.gameCollection.add(newGame)
     await this.gameCollection.doc(id).set(newGame);

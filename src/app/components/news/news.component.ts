@@ -12,6 +12,7 @@ export class NewsComponent implements OnInit {
     content: 'news',
     imageUrl: '',
     idLeague: '',
+    timestamp: new Date().toISOString()
   };
 
   constructor() {}
