@@ -71,6 +71,7 @@ export interface Player {
     id?: string,
     name: string,
     number: number,
+    city: string,
     idTeams?: string[],
     photoUrl?: string,
     birthday?: string,

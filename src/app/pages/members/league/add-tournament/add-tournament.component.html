@@ -34,7 +34,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Cumpleaños</mat-label>
+          <mat-label>Cumpleaños setear a hoy</mat-label>
           <input matInput type="date" formControlName="birthday" id="birthday" name="birthday" min="1940-01-01"
             max="2022-12-31">
         </mat-form-field>
@@ -44,30 +44,30 @@
           <input matInput formControlName="city" />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Capitán</mat-label>
           <input matInput formControlName="captain" />
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Jugadores</mat-label>
           <input matInput formControlName="players" />
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Mail</mat-label>
           <input matInput formControlName="mail" />
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Contacto</mat-label>
           <input matInput formControlName="contact" />
-        </mat-form-field>
+        </mat-form-field> -->
 
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
           <mat-label>Redes Sociales</mat-label>
           <input matInput formControlName="social" />
-        </mat-form-field>
+        </mat-form-field> -->
 
         <button class="button" type="submit">Enviar</button>
 
@@ -90,7 +90,7 @@
       </mat-form-field>
     </div>
 
-    <h3>Invitar Jugadores</h3>
+    <h3>Invitar Jugadores (nombre, posición, ciudad, correo)</h3>
     <div style="margin: 20px;">
       <div *ngFor="let player of players">{{player.name}}</div>
     </div>
@@ -246,7 +246,7 @@
         </div>
 
         <mat-form-field appearance="fill">
-          <mat-label>Contacto</mat-label>
+          <mat-label>Contacto (Automático a persona que lo crea)</mat-label>
           <input matInput formControlName="contact" />
         </mat-form-field>
 
@@ -254,6 +254,18 @@
       </form>
     </div>
 
+  </mat-tab>
+  <mat-tab label="Administrar Torneo o Liga">
+    <h2>Mis Torneos y ligas</h2>
+
+    <mat-form-field appearance="fill" style="width: 40vw">
+      <mat-label>Selecciona tu liga</mat-label>
+      <mat-select [(ngModel)]="selectedLeague">
+        <mat-option *ngFor="let league of leagues" [value]="league.name">
+          {{ league.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </mat-tab>
   <mat-tab label="Anuncios"> Content 3 </mat-tab>
 </mat-tab-group>

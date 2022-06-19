@@ -92,6 +92,7 @@ export class AddTournamentComponent implements OnInit {
   ngOnInit(): void {
     this.teamService.getAllTeams().subscribe((t) => this.teams = t)
     this.playerService.getAllPlayers().subscribe((p) => this.players = p)
+    this.leagueService.getAllLeagues().subscribe((l) => this.leagues = l)
   }
 
   onSubmit(): void {
