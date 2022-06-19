@@ -10,7 +10,7 @@ export interface Coach {
     speciality?: string,
     photoUrl?: string,
     contact?: string,
-    timestamp:string,
+    timestamp: string,
 }
 
 export interface User {
@@ -18,12 +18,13 @@ export interface User {
     photoUrl?: string,
     contact: string,
     roles: string[],
-    timestamp:string,
+    timestamp: string,
 }
 
 import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
 
 export interface Team {
+    id?: string,
     name: string,
     city: string,
     category: string,
@@ -35,7 +36,7 @@ export interface Team {
     contact?: string,
     social?: string,
     likes?: number,
-    timestamp:string,
+    timestamp: string,
 }
 
 export interface Score {
@@ -63,7 +64,7 @@ export interface Referee {
     experience?: string,
     photoUrl?: string,
     contact?: string,
-    timestamp:string,
+    timestamp: string,
 }
 
 export interface Player {
@@ -80,26 +81,57 @@ export interface Player {
     contact?: string,
     social?: string,
     likes?: number,
-    timestamp:string,
+    timestamp: string,
 }
 
 export interface News {
-  title: string,
-  content: string,
-  imageUrl: string,
+    title: string,
+    content: string,
+    imageUrl: string,
     idLeague: string,
-    timestamp:string,
+    timestamp: string,
 }
 
 
 export interface League {
-  name: string,
+    id?: string;
+    name: string,
     region: string,
-    timestamp:string,
+    timestamp: string,
+}
+
+export interface Tournament {
+    id?: string,
+    name: string,
+    leagueName: string,
+    region: string,
+    startDate: string,
+    endDate: string,
+    moday: boolean,
+    tuesday: boolean,
+    wednesday: boolean,
+    thursday: boolean,
+    friday: boolean,
+    saturday: boolean,
+    sunday: boolean,
+    startTime: string,
+    endTime: string,
+    address: string,
+    city: string,
+    state: string,
+    courts: number,
+    type: string,
+    size: string,
+    category: string,
+    priceReferee: number,
+    priceRegistration: number,
+    rules: string,
+    contact: string,
+    timestamp: string,
 }
 
 export interface Game {
-    id: string,
+    id?: string,
     idTeam1: string,
     idTeam2: string,
     idScore1: string,
@@ -108,5 +140,5 @@ export interface Game {
     time: string,
     quarter?: number,
     extraquarter?: number,
-    timestamp:string,
+    timestamp: string,
 }

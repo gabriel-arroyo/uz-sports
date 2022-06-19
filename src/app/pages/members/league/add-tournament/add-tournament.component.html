@@ -1,4 +1,100 @@
 <mat-tab-group>
+  <mat-tab label="Nuevo Equipo">
+    <h2>Registro de Equipo</h2>
+
+    <div class="container">
+
+      <form [formGroup]="teamForm" (ngSubmit)="onTeamSubmit()"
+        style="display: flex; flex-direction: column; width: 50vw; margin-bottom: 100px;">
+
+        <h3>Nuevo Equipo</h3>
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="name" />
+        </mat-form-field>
+
+
+        <div class="form-group">
+          <label for="myLogo" style="margin-right: 10px">Logo </label>
+          <input formControlName="logo" type="file" id="myLogo" name="filename" />
+        </div>
+
+        <div class="form-group">
+          <label for="myTeamPhoto" style="margin-right: 10px">Foto del equipo </label>
+          <input formControlName="photo" type="file" id="myTeamPhoto" name="filename" />
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categories" [value]="category">
+              {{ category }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Cumpleaños</mat-label>
+          <input matInput type="date" formControlName="birthday" id="birthday" name="birthday" min="1940-01-01"
+            max="2022-12-31">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Ciudad</mat-label>
+          <input matInput formControlName="city" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Capitán</mat-label>
+          <input matInput formControlName="captain" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Jugadores</mat-label>
+          <input matInput formControlName="players" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Mail</mat-label>
+          <input matInput formControlName="mail" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Contacto</mat-label>
+          <input matInput formControlName="contact" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Redes Sociales</mat-label>
+          <input matInput formControlName="social" />
+        </mat-form-field>
+
+        <button class="button" type="submit">Enviar</button>
+
+
+      </form>
+    </div>
+
+  </mat-tab>
+  <mat-tab label="Administrar Equipo">
+    <h2>Mi Equipo</h2>
+
+    <div class="container">
+      <mat-form-field appearance="fill" style="width: 40vw">
+        <mat-label>Selecciona tu equipo</mat-label>
+        <mat-select [(ngModel)]="selectedTeam">
+          <mat-option *ngFor="let team of teams" [value]="team.name">
+            {{ team.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <h3>Invitar Jugadores</h3>
+    <div style="margin: 20px;">
+      <div *ngFor="let player of players">{{player.name}}</div>
+    </div>
+  </mat-tab>
   <mat-tab label="Torneo y Liga">
     <h2>Registro de Torneos y Ligas</h2>
 
@@ -88,13 +184,13 @@
         </mat-form-field>
 
         <!-- <div class="courts" formGroupName="courts">
-      <mat-checkbox
-        *ngFor="let court of courtsList"
-        [formControlName]="court"
-        [value]="court"
-        >{{ court }}</mat-checkbox
-      >
-    </div> -->
+        <mat-checkbox
+          *ngFor="let court of courtsList"
+          [formControlName]="court"
+          [value]="court"
+          >{{ court }}</mat-checkbox
+        >
+      </div> -->
 
         <mat-form-field appearance="fill">
           <mat-label>Canchas</mat-label>
@@ -152,81 +248,6 @@
         <mat-form-field appearance="fill">
           <mat-label>Contacto</mat-label>
           <input matInput formControlName="contact" />
-        </mat-form-field>
-
-        <button class="button" type="submit">Enviar</button>
-      </form>
-    </div>
-
-  </mat-tab>
-  <mat-tab label="Equipo">
-    <h2>Registro de Equipo</h2>
-
-    <div class="container">
-
-      <form [formGroup]="teamForm" (ngSubmit)="onSubmit()"
-        style="display: flex; flex-direction: column; width: 50vw; margin-bottom: 100px;">
-
-        <h3>Nuevo Torneo</h3>
-        <mat-form-field appearance="fill">
-          <mat-label>Nombre</mat-label>
-          <input matInput formControlName="name" />
-        </mat-form-field>
-
-
-        <div class="form-group">
-          <label for="myLogo" style="margin-right: 10px">Logo </label>
-          <input formControlName="logo" type="file" id="myLogo" name="filename" />
-        </div>
-
-        <div class="form-group">
-          <label for="myTeamPhoto" style="margin-right: 10px">Foto del equipo </label>
-          <input formControlName="photo" type="file" id="myTeamPhoto" name="filename" />
-        </div>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Categoría</mat-label>
-          <mat-select formControlName="category">
-            <mat-option *ngFor="let category of categories" [value]="category">
-              {{ category }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Cumpleaños</mat-label>
-          <input matInput type="date" formControlName="birthday" id="birthday" name="birthday" min="1940-01-01"
-            max="2022-12-31">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Ciudad</mat-label>
-          <input matInput formControlName="city" />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Capitán</mat-label>
-          <input matInput formControlName="captain" />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Jugadores</mat-label>
-          <input matInput formControlName="players" />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Mail</mat-label>
-          <input matInput formControlName="mail" />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Contacto</mat-label>
-          <input matInput formControlName="contact" />
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-          <mat-label>Redes Sociales</mat-label>
-          <input matInput formControlName="social" />
         </mat-form-field>
 
         <button class="button" type="submit">Enviar</button>

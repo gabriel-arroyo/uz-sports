@@ -57,7 +57,29 @@ export class TeamService {
     );
   }
 
+  getAllTeams() {
+    return this.db
+      .collection<Team>(`/Teams`)
+      .snapshotChanges()
+      .pipe(
+        map((actions) =>
+          actions.map((a) => {
+            const data = a.payload.doc.data() as Team;
+            const id = a.payload.doc.id;
+            return { ...data, id };
+          })
+        )
+      );
+  }
+
+
   async createTeam(team: Team) {
+    // const id = this.db.createId();
+    // const newLeague = { ...team, id }
+
+    // await this.teamCollection.doc(id).set(newLeague);
+    // return newLeague;
+    console.log(team)
     const res = await this.teamCollection.add(team);
     return res.id ? res.id : '';
   }

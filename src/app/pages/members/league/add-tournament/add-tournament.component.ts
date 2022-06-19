@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { League } from 'src/app/core/models/models';
+import { ThisisuzComponent } from 'src/app/components/thisisuz/thisisuz.component';
+import { League, Player, Team, Tournament } from 'src/app/core/models/models';
+import { LeagueService } from 'src/app/services/league.service';
+import { PlayerService } from 'src/app/services/player.service';
+import { TeamService } from 'src/app/services/team.service';
+import { TournamentService } from 'src/app/services/tournament.service';
 
 @Component({
   selector: 'app-add-tournament',
@@ -9,6 +14,7 @@ import { League } from 'src/app/core/models/models';
 })
 export class AddTournamentComponent implements OnInit {
   selectedLeague: string = '';
+  selectedTeam: string = '';
   monday = new FormControl(false);
   tuesday = new FormControl(false);
   wednesday = new FormControl(false);
@@ -49,7 +55,9 @@ export class AddTournamentComponent implements OnInit {
   });
   courts = <FormGroup>this.form.get('courts');
 
-  leagues: League[] = [{ name: 'TNB', region: 'South',  timestamp: new Date().toISOString() }];
+  leagues: League[] = [{ name: 'TNB', region: 'South', timestamp: new Date().toISOString(), id: '1' }];
+  teams: Team[] = []
+  players: Player[] = []
 
   types = ['Aire libre', 'Gimnasio'];
   sizes = ['Profesional', 'Semi-Profesional', 'Infantil'];
@@ -69,19 +77,46 @@ export class AddTournamentComponent implements OnInit {
     players: [],
     mail: '',
     contact: '',
-    social:''
+    social: ''
   })
 
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private leagueService: LeagueService,
+    private torunamentService: TournamentService,
+    private teamService: TeamService,
+    private playerService: PlayerService
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.teamService.getAllTeams().subscribe((t) => this.teams = t)
+    this.playerService.getAllPlayers().subscribe((p) => this.players = p)
+  }
 
   onSubmit(): void {
     // this.courtsList.forEach((court: any) => {
     //   this.courts.addControl(court, new FormControl(true));
     // });
+    if (this.selectedLeague === 'new') {
+      const league: League = {
+        name: this.form.get('leagueName')?.value,
+        region: this.form.get('region')?.value,
+        timestamp: new Date().toISOString()
+      }
+      this.leagueService.createLeague(league)
+    }
+    const tournament: Tournament = { ... this.form.value, timestamp: new Date().toISOString() }
+    this.torunamentService.createTournament(tournament)
     console.warn('Your form has been submitted', this.form.value);
     this.form.reset();
+  }
+  onTeamSubmit() {
+    const team: Team = {
+      ... this.teamForm.value,
+      timestamp: new Date().toISOString()
+    }
+    this.teamService.createTeam(team)
+    this.teamForm.reset()
   }
 }
