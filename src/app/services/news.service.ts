@@ -22,7 +22,7 @@ export class NewsService {
     this.news = this.newsCollection.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as News;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -34,7 +34,7 @@ export class NewsService {
     const itemRef = this.db.doc<News>(`/News/` + id);
     let team = itemRef.snapshotChanges().pipe(
       map((a) => {
-        const data = a.payload.data() as News;
+        const data = a.payload.data();
         const id = a.payload.id;
         return { ...data, id };
       })
@@ -49,7 +49,7 @@ export class NewsService {
     return teams.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as News;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })

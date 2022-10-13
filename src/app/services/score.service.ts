@@ -41,7 +41,7 @@ export class ScoreService {
     return games.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Score;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -57,7 +57,7 @@ export class ScoreService {
       .pipe(
         map((actions) =>
           actions.map((a) => {
-            const data = a.payload.doc.data() as Point;
+            const data = a.payload.doc.data();
             return { ...data };
           })
         )
@@ -73,7 +73,7 @@ export class ScoreService {
     return games.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Point;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -88,7 +88,7 @@ export class ScoreService {
     return games.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Score;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -103,7 +103,7 @@ export class ScoreService {
     return scores.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Score;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -146,7 +146,7 @@ export class ScoreService {
       .pipe(
         map((actions) =>
           actions.map((a) => {
-            const data = a.payload.doc.data() as Point;
+            const data = a.payload.doc.data();
             const id = a.payload.doc.id;
             return { ...data, id };
           })

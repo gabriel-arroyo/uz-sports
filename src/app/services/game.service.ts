@@ -13,18 +13,18 @@ import { ScoreService } from './score.service';
   providedIn: 'root',
 })
 export class GameService {
-  gameCollection: AngularFirestoreCollection<Game>;
+  gameCollection: AngularFirestoreCollection<any>;
   games: Observable<Game[]>;
   db: AngularFirestore;
 
   constructor(public fb: AngularFirestore, private scoreService: ScoreService) {
     this.db = fb;
-    this.gameCollection = fb.collection<Game>('Games');
+    this.gameCollection = fb.collection<any>('Games');
 
     this.games = this.gameCollection.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Game;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -33,10 +33,10 @@ export class GameService {
   }
 
   getGame(id: string) {
-    const itemRef = this.db.doc<Game>(`/Games/` + id);
+    const itemRef = this.db.doc<any>(`/Games/` + id);
     let game = itemRef.snapshotChanges().pipe(
       map((a) => {
-        const data = a.payload.data() as Game;
+        const data = a.payload.data();
         const id = a.payload.id;
         return { ...data, id };
       })
@@ -45,13 +45,13 @@ export class GameService {
   }
 
   getGameBySchedule(date: string, time: string) {
-    let games = this.db.collection<Game>('Games', (ref) =>
+    let games = this.db.collection<any>('Games', (ref) =>
       ref.where('date', '==', date).where('time', '==', time).limit(1)
     );
     return games.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Game;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -68,7 +68,7 @@ export class GameService {
     const id = this.db.createId();
     const idScore1 = await this.scoreService.createScore(idTeam1);
     const idScore2 = await this.scoreService.createScore(idTeam2);
-    let newGame: Game = {
+    let newGame = {
       id: id,
       idTeam1: idTeam1,
       idTeam2: idTeam2,

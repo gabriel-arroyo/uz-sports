@@ -53,7 +53,8 @@ export class AddTournamentComponent implements OnInit {
     rules: '',
     contact: '',
   });
-  courts = <FormGroup>this.form.get('courts');
+  //courts = <FormGroup>this.form.get('courts');
+  courts = this.form.get('courts');
 
   leagues: League[] = [{ name: 'TNB', region: 'South', timestamp: new Date().toISOString(), id: '1' }];
   teams: Team[] = []
@@ -100,20 +101,20 @@ export class AddTournamentComponent implements OnInit {
     //   this.courts.addControl(court, new FormControl(true));
     // });
     if (this.selectedLeague === 'new') {
-      const league: League = {
-        name: this.form.get('leagueName')?.value,
+      const league = {
+        name: this.form.get('leagueName')?.value?.toString(),
         region: this.form.get('region')?.value,
         timestamp: new Date().toISOString()
       }
       this.leagueService.createLeague(league)
     }
-    const tournament: Tournament = { ... this.form.value, timestamp: new Date().toISOString() }
+    const tournament = { ... this.form.value, timestamp: new Date().toISOString() }
     this.torunamentService.createTournament(tournament)
     console.warn('Your form has been submitted', this.form.value);
     this.form.reset();
   }
   onTeamSubmit() {
-    const team: Team = {
+    const team = {
       ... this.teamForm.value,
       timestamp: new Date().toISOString()
     }

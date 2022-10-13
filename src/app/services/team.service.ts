@@ -22,7 +22,7 @@ export class TeamService {
     this.teams = this.teamCollection.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Team;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -34,7 +34,7 @@ export class TeamService {
     const itemRef = this.db.doc<Team>(`/Teams/` + id);
     let team = itemRef.snapshotChanges().pipe(
       map((a) => {
-        const data = a.payload.data() as Team;
+        const data = a.payload.data();
         const id = a.payload.id;
         return { ...data, id };
       })
@@ -49,7 +49,7 @@ export class TeamService {
     return teams.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Team;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -64,7 +64,7 @@ export class TeamService {
       .pipe(
         map((actions) =>
           actions.map((a) => {
-            const data = a.payload.doc.data() as Team;
+            const data = a.payload.doc.data();
             const id = a.payload.doc.id;
             return { ...data, id };
           })
@@ -73,7 +73,7 @@ export class TeamService {
   }
 
 
-  async createTeam(team: Team) {
+  async createTeam(team: any) {
     // const id = this.db.createId();
     // const newLeague = { ...team, id }
 

@@ -22,7 +22,7 @@ export class UserService {
     this.users = this.usersCollection.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as User;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -34,7 +34,7 @@ export class UserService {
     const itemRef = this.db.doc<User>(`/Users/` + id);
     let user = itemRef.snapshotChanges().pipe(
       map((a) => {
-        const data = a.payload.data() as User;
+        const data = a.payload.data();
         const id = a.payload.id;
         return { ...data, id };
       })
@@ -49,7 +49,7 @@ export class UserService {
       .pipe(
         map((actions) =>
           actions.map((a) => {
-            const data = a.payload.doc.data() as User;
+            const data = a.payload.doc.data();
             const id = a.payload.doc.id;
             return { ...data, id };
           })
@@ -64,7 +64,7 @@ export class UserService {
     return users.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as User;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -79,7 +79,7 @@ export class UserService {
     return users.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as User;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })

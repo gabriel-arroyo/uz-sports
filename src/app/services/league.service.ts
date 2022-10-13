@@ -21,7 +21,7 @@ export class LeagueService {
         this.leagues = this.leagueCollection.snapshotChanges().pipe(
             map((actions) =>
                 actions.map((a) => {
-                    const data = a.payload.doc.data() as League;
+                    const data = a.payload.doc.data();
                     const id = a.payload.doc.id;
                     return { ...data, id };
                 })
@@ -33,7 +33,7 @@ export class LeagueService {
         const itemRef = this.db.doc<League>(`/Leagues/` + id);
         let league = itemRef.snapshotChanges().pipe(
             map((a) => {
-                const data = a.payload.data() as League;
+                const data = a.payload.data();
                 const id = a.payload.id;
                 return { ...data, id };
             })
@@ -48,7 +48,7 @@ export class LeagueService {
             .pipe(
                 map((actions) =>
                     actions.map((a) => {
-                        const data = a.payload.doc.data() as League;
+                        const data = a.payload.doc.data();
                         const id = a.payload.doc.id;
                         return { ...data, id };
                     })
@@ -57,7 +57,7 @@ export class LeagueService {
     }
 
 
-    async createLeague(league: League) {
+    async createLeague(league: any) {
         const id = this.db.createId();
         const newLeague = { ...league, id }
 

@@ -21,7 +21,7 @@ export class TournamentService {
         this.tournaments = this.tournamentCollection.snapshotChanges().pipe(
             map((actions) =>
                 actions.map((a) => {
-                    const data = a.payload.doc.data() as Tournament;
+                    const data = a.payload.doc.data();
                     const id = a.payload.doc.id;
                     return { ...data, id };
                 })
@@ -33,7 +33,7 @@ export class TournamentService {
         const itemRef = this.db.doc<Tournament>(`/Tournaments/` + id);
         let tournament = itemRef.snapshotChanges().pipe(
             map((a) => {
-                const data = a.payload.data() as Tournament;
+                const data = a.payload.data();
                 const id = a.payload.id;
                 return { ...data, id };
             })
@@ -48,7 +48,7 @@ export class TournamentService {
             .pipe(
                 map((actions) =>
                     actions.map((a) => {
-                        const data = a.payload.doc.data() as Tournament;
+                        const data = a.payload.doc.data();
                         const id = a.payload.doc.id;
                         return { ...data, id };
                     })
@@ -56,7 +56,7 @@ export class TournamentService {
             );
     }
 
-    async createTournament(torunament: Tournament) {
+    async createTournament(torunament: any) {
         const id = this.db.createId();
         let newTournament = { ...torunament, id }
         // const res = await this.gameCollection.add(newGame)

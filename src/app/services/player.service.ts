@@ -22,7 +22,7 @@ export class PlayerService {
     this.players = this.playerCollection.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Player;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -34,7 +34,7 @@ export class PlayerService {
     const itemRef = this.db.doc<Player>(`/Players/` + id);
     let player = itemRef.snapshotChanges().pipe(
       map((a) => {
-        const data = a.payload.data() as Player;
+        const data = a.payload.data();
         const id = a.payload.id;
         return { ...data, id };
       })
@@ -49,7 +49,7 @@ export class PlayerService {
       .pipe(
         map((actions) =>
           actions.map((a) => {
-            const data = a.payload.doc.data() as Player;
+            const data = a.payload.doc.data();
             const id = a.payload.doc.id;
             return { ...data, id };
           })
@@ -64,7 +64,7 @@ export class PlayerService {
     return players.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Player;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
@@ -79,7 +79,7 @@ export class PlayerService {
     return players.snapshotChanges().pipe(
       map((actions) =>
         actions.map((a) => {
-          const data = a.payload.doc.data() as Player;
+          const data = a.payload.doc.data();
           const id = a.payload.doc.id;
           return { ...data, id };
         })
