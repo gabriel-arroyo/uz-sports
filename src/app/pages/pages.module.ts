@@ -12,6 +12,7 @@ import {MembersModule} from './members/members.module'
 import {LeagueModule} from './members/league/league.module'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialFullModule } from 'src/material.module';
+import { PagesRoutingModule } from './pages-routing.module';
 
 
 
@@ -29,6 +30,7 @@ import { MaterialFullModule } from 'src/material.module';
   imports: [
     CommonModule,
     ComponentsModule,
+    PagesRoutingModule,
     ReactiveFormsModule,
     MaterialFullModule,
     // MembersModule,
