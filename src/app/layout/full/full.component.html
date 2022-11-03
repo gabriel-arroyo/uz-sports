@@ -1,0 +1,49 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <div fxLayout="row" fxShow="false" fxShow.gt-sm></div>
+        <div fxFlexOffset.gt-md="47" fxflex="30">
+            UZ Sport
+        </div>
+        <div fxFlexOffset.gt-md="auto" fxflex="30">
+            <div class="example-button-row">
+                <div class="example-flex-container">
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <i class="bi bi-facebook"></i>
+          </button>
+                    <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+            <i class="bi bi-instagram"></i>
+          </button>
+                    <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+            <i class="bi bi-whatsapp"></i>
+          </button>
+                    <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                      <i class="bi bi-envelope"></i>
+          </button>
+
+                </div>
+            </div>
+        </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+        <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon" routerLink="/uzsport/home">
+        <mat-icon>home</mat-icon>
+      </button>
+        </div>
+        <div fxFlexOffset.gt-md="45" fxflex="30">
+            <span>
+        <a routerLink="/uzsport/thisisus">THIS IS UZ</a>
+      </span>
+        </div>
+        <div fxFlexOffset.gt-md="auto" fxflex="30">
+            <button mat-icon-button color="warn" [matMenuTriggerFor]="menu" aria-label="Example icon button with a heart icon">
+            <i class="bi bi-person-circle"></i>
+</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/uzsport/login">Login</button>
+                <button mat-menu-item routerLink="/uzsport/register">Registro</button>
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<router-outlet></router-outlet>
