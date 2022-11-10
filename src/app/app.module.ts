@@ -12,11 +12,13 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule  } from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment.prod';
+import { BlankComponent } from './layout/blank/blank.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FullComponent
+    FullComponent,
+    BlankComponent
   ],
   imports: [
     BrowserModule,

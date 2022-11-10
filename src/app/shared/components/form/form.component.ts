@@ -9,7 +9,7 @@ import { Form } from 'src/app/core/interfaces/form';
   ]
 })
 export class FormComponent implements OnChanges {
-
+  hide = true;
   @Input() FormJson: any = null;
   @Input() NameButton: string = '';
   @Output() DelegateEvent: EventEmitter<FormGroup> = new EventEmitter<FormGroup>();
@@ -40,7 +40,7 @@ export class FormComponent implements OnChanges {
       TransactionalData: []
     };
     //this.fg.valueChanges.subscribe((values) => this.DelegateEvent.emit(this.fg));
-    this.Forms.push(this.form);
+    //this.Forms.push(this.form);
   }
 
   private MapValidators(validators: any) {
@@ -53,6 +53,8 @@ export class FormComponent implements OnChanges {
           FormValidators.push(Validators.minLength(validators[validation]));
         } else if (validation === 'maxLength') {
           FormValidators.push(Validators.maxLength(validators[validation]));
+        } else if (validation == 'email') {
+          FormValidators.push(Validators.email);
         }
       }
     }
@@ -78,5 +80,20 @@ export class FormComponent implements OnChanges {
 
   OnSubmit(Form: FormGroup) {
     this.DelegateEvent.emit(Form);
+  }
+
+  GetErrorMessage(key: string): string {
+    let error: string = ''; 
+    for (const keyForm in this.form.FormGroup.get(key)!.errors) {
+      switch(keyForm) {
+        case 'required':
+          error = `El campo ${key} es obligatorio`
+          break;
+        default:
+          error = `El campo ${key} tiene el siguiente error ${keyForm}`
+          break;
+      }
+    }
+    return error;
   }
 }

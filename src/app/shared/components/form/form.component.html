@@ -1,18 +1,27 @@
-<div class="form-group" *ngIf="Forms != null">
-    <div *ngFor="let f of Forms">
-        <form novalidate (ngSubmit)="OnSubmit(form.FormGroup)" [formGroup]="f.FormGroup">
-            <div *ngFor="let prop of f.MetaData">
-                <label [attr.for]="prop"> {{prop.label}} </label>
-                <ng-container [ngSwitch]="prop.type">
-                    <input *ngSwitchCase="'text'" class="form-control" [formControlName]="prop.key" [id]="prop.key" [type]="prop.type" />
-                </ng-container>
-                <div class="error" *ngIf="(f.FormGroup.get(prop.key)!.dirty || f.FormGroup.get(prop.key)!.touched) && f.FormGroup.get(prop.key)!.invalid">
-                    <p>
-                        {{ f.FormGroup.get(prop.key)!.errors | json }}
-                    </p>
-                </div>
-            </div>
-            <button type="submit">{{NameButton}}</button>
-        </form>
+<form novalidate (ngSubmit)="OnSubmit(form.FormGroup)" [formGroup]="form.FormGroup">
+    <div *ngFor="let prop of form.MetaData">
+        <!--label [attr.for]="prop"> {{prop.label}} </label-->
+        <ng-container [ngSwitch]="prop.type">
+            <!--input *ngSwitchCase="'text'" class="form-control" [formControlName]="prop.key" [id]="prop.key" [type]="prop.type" /-->
+            <mat-form-field *ngSwitchCase="'text'" appearance="fill">
+                <mat-label> {{ prop.label }} </mat-label>
+                <input matInput *ngSwitchCase="'text'" [formControlName]="prop.key" [id]="prop.key" [type]="prop.type" />
+            </mat-form-field>
+
+            <mat-form-field *ngSwitchCase="'password'" appearance="fill">
+                <mat-label> {{ prop.label }} </mat-label>
+                <input [type]="hide ? 'password' : 'text'" matInput *ngSwitchCase="'password'" [formControlName]="prop.key" [id]="prop.key" [type]="prop.type" />
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
+            </mat-form-field>
+        </ng-container>
+        <div *ngIf="(form.FormGroup.get(prop.key)!.dirty || form.FormGroup.get(prop.key)!.touched) && form.FormGroup.get(prop.key)!.invalid">
+            <!--p>
+                        {{ form.FormGroup.get(prop.key)!.errors | json }}
+                    </p-->
+            <mat-error> {{ GetErrorMessage(prop.key) }}</mat-error>
+        </div>
     </div>
-</div>
+    <button type="submit" mat-raised-button color="primary">{{NameButton}}</button>
+</form>

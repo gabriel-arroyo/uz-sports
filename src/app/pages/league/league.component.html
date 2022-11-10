@@ -1,10 +1,17 @@
 <div class="row">
     <div class="col-12" class="text-center">
-        <p>{{titleLeague}}</p>
+        <h1 style="font-weight: bold;">{{league.NameLeague}}</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-6">
-        <app-card-league></app-card-league>
+        <app-card-league [League]="league"></app-card-league>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+    </div>
+    <div class="col-4">
+        <h2 style="font-weight: bold;">Tournaments</h2>
     </div>
 </div>

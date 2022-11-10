@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FullComponent } from './layout/full/full.component';
+import { BlankComponent } from './layout/blank/blank.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,15 @@ const routes: Routes = [{
     {
       path: 'uzsport',
       loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
+    }
+  ]
+}, {
+  path: 'score',
+  component: BlankComponent,
+  children: [
+    {
+      path: '',
+      loadChildren: () => import('./score-app/score-app.module').then(m => m.ScoreAppModule)
     }
   ]
 }];

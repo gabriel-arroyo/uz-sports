@@ -35,7 +35,7 @@
         <button mat-button routerLink="/uzsport/thisisus">THIS IS UZ</button>
         <button mat-button [matMenuTriggerFor]="leagues">Leagues</button>
         <mat-menu #leagues>
-            <button mat-menu-item *ngFor="let league of leaguesClass" (click)="GoLeague(league)" >{{ league.nameLeague}}</button>
+            <button mat-menu-item *ngFor="let league of leaguesClass" (click)="GoLeague(league)" >{{ league.NameLeague}}</button>
             <!--button mat-menu-item>Poniente</button>
             <button mat-menu-item>Oriente</button>
             <button mat-menu-item>Sur</button-->
@@ -60,4 +60,6 @@
         </div>
     </mat-toolbar-row>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

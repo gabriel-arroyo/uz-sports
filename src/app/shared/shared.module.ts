@@ -5,6 +5,8 @@ import { FormComponent } from './components/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardLeagueComponent } from './components/card-league/card-league.component';
 import { MaterialModule } from '../material/material.module';
+import { CarouselsComponent } from './components/carousels/carousels.component';
+import { CountFoulComponent } from './components/count-foul/count-foul.component';
 
 
 
@@ -12,7 +14,9 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     GaleryComponent,
     FormComponent,
-    CardLeagueComponent
+    CardLeagueComponent,
+    CarouselsComponent,
+    CountFoulComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +26,8 @@ import { MaterialModule } from '../material/material.module';
   ],
   exports: [
     FormComponent,
-    CardLeagueComponent
+    CardLeagueComponent,
+    CountFoulComponent
   ]
 })
 export class SharedModule { }

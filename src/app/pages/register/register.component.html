@@ -1,1 +1,5 @@
-<p>register works!</p>
+<div class="row text-center">
+    <div class="col-12">
+        <app-form [FormJson]="JSONRegister" [NameButton]="'Registrar'" (DelegateEvent)="ValidateForm($event)"></app-form>
+    </div>
+</div>
