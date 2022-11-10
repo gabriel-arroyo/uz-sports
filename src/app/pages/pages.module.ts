@@ -10,6 +10,11 @@ import { CommunityComponent } from './community/community.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { SharedModule } from '../shared/shared.module';
+import { TeamsComponent } from './teams/teams.component';
+import { PlayersComponent } from './players/players.component';
+import { RefereesComponent } from './referees/referees.component';
+import { CoachesComponent } from './coaches/coaches.component';
 
 
 
@@ -21,14 +26,19 @@ import { RegisterComponent } from './register/register.component';
     TournamentComponent,
     CommunityComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    TeamsComponent,
+    PlayersComponent,
+    RefereesComponent,
+    CoachesComponent
   ],
   imports: [
     CommonModule,
     PagesRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class PagesModule { }

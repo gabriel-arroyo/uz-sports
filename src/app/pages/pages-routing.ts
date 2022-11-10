@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ThisIsUsComponent } from "./this-is-us/this-is-us.component";
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { LeagueComponent } from './league/league.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,10 @@ const routes: Routes = [
             {
                 path: 'register',
                 component: RegisterComponent
+            },
+            {
+                path: 'league/:league',
+                component: LeagueComponent
             }
         ]
     }

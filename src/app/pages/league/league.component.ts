@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-league',
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeagueComponent implements OnInit {
 
-  constructor() { }
+  titleLeague: string = '';
+
+  constructor(private routerActive: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.routerActive.params.subscribe((params: Params) => this.titleLeague = params['league'])
   }
 
 }

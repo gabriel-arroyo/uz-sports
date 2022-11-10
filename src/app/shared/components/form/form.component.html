@@ -1,0 +1,18 @@
+<div class="form-group" *ngIf="Forms != null">
+    <div *ngFor="let f of Forms">
+        <form novalidate (ngSubmit)="OnSubmit(form.FormGroup)" [formGroup]="f.FormGroup">
+            <div *ngFor="let prop of f.MetaData">
+                <label [attr.for]="prop"> {{prop.label}} </label>
+                <ng-container [ngSwitch]="prop.type">
+                    <input *ngSwitchCase="'text'" class="form-control" [formControlName]="prop.key" [id]="prop.key" [type]="prop.type" />
+                </ng-container>
+                <div class="error" *ngIf="(f.FormGroup.get(prop.key)!.dirty || f.FormGroup.get(prop.key)!.touched) && f.FormGroup.get(prop.key)!.invalid">
+                    <p>
+                        {{ f.FormGroup.get(prop.key)!.errors | json }}
+                    </p>
+                </div>
+            </div>
+            <button type="submit">{{NameButton}}</button>
+        </form>
+    </div>
+</div>

@@ -32,7 +32,21 @@
         </div>
         <div fxFlexOffset.gt-md="45" fxflex="30">
             <span>
-        <a routerLink="/uzsport/thisisus">THIS IS UZ</a>
+        <button mat-button routerLink="/uzsport/thisisus">THIS IS UZ</button>
+        <button mat-button [matMenuTriggerFor]="leagues">Leagues</button>
+        <mat-menu #leagues>
+            <button mat-menu-item *ngFor="let league of leaguesClass" (click)="GoLeague(league)" >{{ league.nameLeague}}</button>
+            <!--button mat-menu-item>Poniente</button>
+            <button mat-menu-item>Oriente</button>
+            <button mat-menu-item>Sur</button-->
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="community">Community</button>
+        <mat-menu #community>
+            <button mat-menu-item>Equipos</button>
+            <button mat-menu-item>Jugadores</button>
+            <button mat-menu-item>Arbitros</button>
+            <button mat-menu-item>Coaches</button>
+        </mat-menu>
       </span>
         </div>
         <div fxFlexOffset.gt-md="auto" fxflex="30">
