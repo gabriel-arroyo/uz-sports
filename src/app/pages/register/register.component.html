@@ -42,14 +42,6 @@
                                 <option value="value3">Registrar equipo...</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="name">Ciudad (Automático)</label>
-                            <input type="text" formControlName="city" class="form-control"
-                                [ngClass]="{ 'is-invalid': submitted && errors }" />
-                            <div *ngIf="submitted && errors" class="invalid-feedback">
-                                <div *ngIf="errors">Revisa tu información</div>
-                            </div>
-                        </div>
                     </div>
                     <div class="form-group">
                         <label for="photoUrl">Foto</label>
@@ -60,12 +52,31 @@
                     <input type="date" formControlName="birthday" id="birthday" name="birthday" min="1940-01-01"
                         max="2022-12-31">
 
-                    <div class="form-group">
-                        <label for="address">Dirección</label>
-                        <input type="text" formControlName="address" class="form-control"
-                            [ngClass]="{ 'is-invalid': submitted && errors }" />
-                        <div *ngIf="submitted && errors" class="invalid-feedback">
-                            <div *ngIf="errors">Last Name is required</div>
+                    <div class="row">
+
+                        <div class="form-group">
+                            <label for="address">Estado</label>
+                            <input type="text" formControlName="state" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && errors }" />
+                            <div *ngIf="submitted && errors" class="invalid-feedback">
+                                <div *ngIf="errors">Last Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Ciudad</label>
+                            <input type="text" formControlName="city" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && errors }" />
+                            <div *ngIf="submitted && errors" class="invalid-feedback">
+                                <div *ngIf="errors">Last Name is required</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Colonia</label>
+                            <input type="text" formControlName="colony" class="form-control"
+                                [ngClass]="{ 'is-invalid': submitted && errors }" />
+                            <div *ngIf="submitted && errors" class="invalid-feedback">
+                                <div *ngIf="errors">Last Name is required</div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">

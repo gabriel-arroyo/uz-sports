@@ -10,7 +10,32 @@ export interface Coach {
     speciality?: string,
     photoUrl?: string,
     contact?: string,
+    referencesUrl?: string,
     timestamp: string,
+}
+
+
+export interface Administrator {
+    name: string,
+    photoUrl?: string,
+    state: string,
+    city: string,
+    colony: string,
+    birthday?: string,
+    mail?: string,
+    contact?: string,
+    social?: string,
+    leagues?: string,
+    tournaments?: string,
+    payments?: Payment[]
+    timestamp: string,
+}
+
+export interface Payment {
+    league: string,
+    teams: number,
+    price: string,
+    timestamp: string
 }
 
 export interface User {
@@ -64,6 +89,7 @@ export interface Referee {
     experience?: string,
     photoUrl?: string,
     contact?: string,
+    referencesUrl?: string,
     timestamp: string,
 }
 
@@ -71,11 +97,13 @@ export interface Player {
     id?: string,
     name: string,
     number: number,
+    state: string,
+    address: string,
     city: string,
+    colony: string,
     idTeams?: string[],
     photoUrl?: string,
     birthday?: string,
-    address?: string,
     position?: string,
     idFavorite?: string,
     mail?: string,
@@ -117,7 +145,6 @@ export interface Tournament {
     sunday: boolean,
     startTime: string,
     endTime: string,
-    address: string,
     city: string,
     state: string,
     courts: number,

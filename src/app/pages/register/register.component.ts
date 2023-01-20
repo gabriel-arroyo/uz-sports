@@ -27,6 +27,8 @@ export class RegisterComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       city: ['', Validators.required],
+      state: ['', Validators.required],
+      colony: ['', Validators.required],
       contact: ['', Validators.required],
       roles: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -35,7 +37,6 @@ export class RegisterComponent implements OnInit {
       teams: [''],
       photoUrl: [''],
       birthday: [''],
-      address: [''],
       mail: [''],
       social: [''],
     });
@@ -69,6 +70,8 @@ export class RegisterComponent implements OnInit {
       position: this.form.get('position')?.value,
       mail: this.form.get('mail')?.value,
       social: this.form.get('social')?.value,
+      state: this.form.get('state')?.value,
+      colony: this.form.get('colony')?.value,
       timestamp: new Date().toISOString()
     };
     // this.userService.createUser(user);
